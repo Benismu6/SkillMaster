@@ -25,6 +25,9 @@ body {
   .button {
     background-color: #4CAF50;
     color: #FFFFFF;
+    margin-left: 10px;
+    border-radius: 10px;
+    width: 90px;
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
@@ -57,6 +60,32 @@ body {
     background-color: #FFFFFF;
     padding: 10px 20px;
     border-bottom: 1px solid #EEEEEE;
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+
+  .navdiv {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .logo a {
+    font-size: 35px;
+    font-weight: 600;
+    color: #333333;
+  }
+
+  li {
+    list-style: none;
+    display: inline-block;
+  }
+
+  li a {
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    margin-right: 25px;
   }
   
   nav a {
@@ -69,3 +98,69 @@ body {
     color: #4CAF50;
   }
   
+  #hero{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #FAFAFA;
+    padding: 20px;
+  }
+
+  #hero button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    margin: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+
+  #hero button a {
+    color: #333333;
+    text-decoration: none;
+    font-weight: bold;  
+  }
+
+  button:hover {
+    background-color: #FF7043;
+  }
+
+  #skills-section {
+    padding: 40px;
+    text-align: center;
+    background-color: #FAFAFA;
+  }
+
+  #skills-section h2 {
+    color:#4CAF50;
+    margin-bottom: 20px;
+  }
+
+  #skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px;
+    padding: 0 20px;
+  }
+
+  .skill-card {
+    background-color: #FFFFFF;
+    border: 1px solid #EEEEEE;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+  }
+
+  .skill-card:hover {
+    transform: translateY(-5px);
+  }
+
+  .special-card {
+    grid-column: span 4;
+    justify-self: center;
+  }
