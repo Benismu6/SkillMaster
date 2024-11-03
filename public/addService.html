@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Service</title>
+    <link rel="stylesheet" href="addService.css">
+</head>
+<body>
+<h1>Add Your Service</h1>
+<form id="serviceForm" action="/submit-service" method="POST" enctype="multipart/form-data">
+    <label for="title">Service Title:</label>
+    <input type="text" id="title" name="title" required>
+
+    <label for="description">Description:</label>
+    <textarea id="description" name="description" rows="4" required></textarea>
+
+    <label for="category">Category:</label>
+    <input type="text" id="category" name="category" placeholder="e.g., Tutoring, Graphic Design" required>
+
+    <label for="price">Price ($):</label>
+    <input type="number" id="price" name="price" min="1" step="0.01" required>
+
+    <label for="fileUpload">Upload Image (Optional):</label>
+    <input type="file" id="fileUpload" name="fileUpload">
+
+    <button type="submit">Submit Service</button>
+</form>
+<p id="confirmationMessage"></p>
+
+<script src="addService.js"></script>
+</body>
+</html>
