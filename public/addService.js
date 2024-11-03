@@ -1,63 +1,87 @@
+// Run the script only after the page content has loaded
 document.addEventListener("DOMContentLoaded", function() {
+
+    // Get references to the form and confirmation message elements
     const form = document.getElementById("serviceForm");
     const confirmationMessage = document.getElementById("confirmationMessage");
 
-    form.addEventListener("submit", function(event) {
-        event.preventDefault(); // Prevent form from submitting the traditional way
+    // Main function that initializes form handling
+    function initializeForm() {
+        // Set up event listener for the form submission
+        form.addEventListener("submit", handleFormSubmit);
+    }
 
-        // Capture form data
-        const title = document.getElementById("title").value;
-        const description = document.getElementById("description").value;
-        const category = document.getElementById("category").value;
-        const price = document.getElementById("price").value;
-        const fileUpload = document.getElementById("fileUpload").files[0];
+    // Function to collect data from the form fields
+    function collectFormData() {
+        // Gather data from each input field and return it as an object
+        return {
+            title: document.getElementById("title").value,
+            description: document.getElementById("description").value,
+            category: document.getElementById("category").value,
+            price: document.getElementById("price").value,
+            location: document.getElementById("location").value,
 
-        // Basic validation
-        if (!title || !description || !category || !price) {
-            confirmationMessage.textContent = "Please fill out all required fields.";
-            confirmationMessage.style.color = "red";
-            return;
-        }
+            // Collect checked values for availability checkboxes
+            availability: Array.from(document.querySelectorAll("input[name='availability']:checked"))
+                .map(checkbox => checkbox.value),
 
-        // Simulate data submission
-        const serviceData = {
-            title,
-            description,
-            category,
-            price,
-            file: fileUpload ? fileUpload.name : "No file uploaded"
+            // Dropdown selections
+            time: document.getElementById("time").value,
+            experience: document.getElementById("experience").value,
+
+            // Optional fields
+            contact: document.getElementById("contact").value,
+            pricingDetails: document.getElementById("pricingDetails").value,
+            serviceDetails: document.getElementById("serviceDetails").value,
+
+            // Tags split into an array
+            tags: document.getElementById("tags").value.split(",").map(tag => tag.trim())
         };
+    }
 
-        // For now, we simply log the data to console
-        console.log("Service Submitted:", serviceData);
+    // Function to handle form submission
+    function handleFormSubmit(event) {
+        // Prevent the default page refresh behavior on form submission
+        event.preventDefault();
 
-        // Display confirmation message
-        confirmationMessage.textContent = "Your service has been successfully submitted!";
-        confirmationMessage.style.color = "green";
+        // Collect data from the form
+        const serviceData = collectFormData();
 
-        // Reset form fields
-        form.reset();
-    });
-});
+        // Log data to confirm it has been collected correctly
+        console.log("Service Data to Send:", serviceData);
 
-form.addEventListener("submit", function(event) {
-    event.preventDefault();
+        // Send the collected data to the server
+        sendDataToServer(serviceData);
+    }
 
-    // Prepare form data to send as JSON
-    const formData = new FormData(form);
-
-    fetch("/submit-service", {
-        method: "POST",
-        body: formData,
-    })
-        .then(response => response.json())
-        .then(data => {
-            confirmationMessage.textContent = data.message;
-            confirmationMessage.style.color = "green";
-            form.reset();
+    // Function to send data to the server
+    function sendDataToServer(serviceData) {
+        // Use fetch to send a POST request with JSON data
+        fetch("/submit-service", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json" // Indicate JSON data is being sent
+            },
+            body: JSON.stringify(serviceData) // Convert data object to JSON format
         })
-        .catch(error => {
-            confirmationMessage.textContent = "Error submitting service. Please try again.";
-            confirmationMessage.style.color = "red";
-        });
+            .then(response => response.json()) // Parse server response as JSON
+            .then(data => displayConfirmationMessage(data.message)) // Show success message
+            .catch(error => displayErrorMessage("Error submitting service. Please try again."));
+    }
+
+    // Function to display a success message on the page
+    function displayConfirmationMessage(message) {
+        confirmationMessage.textContent = message;
+        confirmationMessage.style.color = "green";
+        form.reset(); // Clear the form after successful submission
+    }
+
+    // Function to display an error message on the page
+    function displayErrorMessage(message) {
+        confirmationMessage.textContent = message;
+        confirmationMessage.style.color = "red";
+    }
+
+    // Initialize the form handling
+    initializeForm();
 });
