@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service Listing Page</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <main>
+        <section class="filter-section">
+            <h2>Search and Filter Services</h2>
+            <input type="text" id="searchBar" placeholder="Search by skill..." onkeyup="filterServices()">
+            <select id="genderFilter" onchange="filterServices()">
+                <option value="">All Genders</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+            </select>
+            <input type="number" id="minExperience" placeholder="Min Experience" onkeyup="filterServices()">
+            <input type="number" id="maxExperience" placeholder="Max Experience" onkeyup="filterServices()">
+        </section>
+
+        <section class="submit-section">
+            <button onclick="location.href='Service Page.html'">Submit</button> *We have to connect the search and filter to the service page
+        </section>
+    </main>
+
+    <script src="Search and Filter Script.js"></script>
+</body>
+</html>
