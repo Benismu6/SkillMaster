@@ -1,85 +1,103 @@
-/* style.css */
-
+/* Apply basic styling for layout */
 body {
     font-family: Arial, sans-serif;
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
 }
 
+/* Header styles */
 header {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-h1 {
-    color: #333;
-}
-
-.content {
-    margin-top: 20px;
-}
-
-.step {
-    margin: 20px 0;
-}
-
-.image-container {
-    position: relative;
-    display: inline-block;
-    overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    transform-origin: center; /* Set transform origin to center for pop-out effect */
-}
-
-/* Zoom and shadow effect on hover */
-.image-container:hover {
-    transform: scale(1.05); /* Slightly scale the whole container */
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4); /* Adds depth to create a 3D effect */
-}
-
-/* Image styling */
-.image-container img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-}
-
-/* Credit overlay text */
-.image-credit {
-    position: absolute;
-    bottom: 0;
-    left: 0;
     width: 100%;
-    background: rgba(0, 0, 0, 0.6);
-    color: #fff;
+    padding: 20px;
     text-align: center;
-    padding: 5px;
-    font-size: 0.8em;
-    opacity: 0;
-    transition: opacity 0.3s ease;
+    background-color: #f2f2f2;
 }
 
-/* Show the credit text on hover */
+/* Main content layout */
+.content {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    padding: 15px;
+    box-sizing: border-box;
+}
+
+.step, .substep {
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+/* Sidebar styling for author and credits */
+.author-section, .credits {
+    width: 25%;
+    padding: 15px;
+    box-sizing: border-box;
+    margin: 10px;
+    border: 1px solid #ddd;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+}
+
+/* Footer styling */
+.footer {
+    width: 100%;
+    padding: 15px;
+    text-align: center;
+    background-color: #f2f2f2;
+    margin-top: 10px;
+}
+
+/* Image container styles */
+.image-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative; /* Needed for positioning the credit */
+}
+
+/* Zoom-in effect on image hover */
+.image-container img {
+    transition: transform 0.3s ease; /* Smooth transition */
+}
+
+.image-container img:hover {
+    transform: scale(1.1); /* Zoom in to 110% */
+}
+
+/* Show image credit on hover */
+.image-container .image-credit {
+    opacity: 0;
+    transition: opacity 0.3s ease; /* Smooth fade-in */
+    position: absolute;
+    bottom: 5px;
+    background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent background */
+    color: white;
+    padding: 3px 6px;
+    border-radius: 5px;
+    font-size: 0.9em;
+}
+
+/* Make the credit visible when hovering over the image */
 .image-container:hover .image-credit {
     opacity: 1;
 }
 
-.author-section {
-    margin-top: 40px;
-    text-align: center;
+/* Video and images sizing */
+img, iframe {
+    max-width: 100%;
+    height: auto;
+    margin: 5px 0;
 }
 
-.author-section img {
-    border-radius: 50%;
-    width: 100px;
-    height: 100px;
-    margin-bottom: 10px;
-}
-
-.footer {
-    margin-top: 20px;
-    font-size: 0.9em;
-    text-align: center;
-    color: gray;
+/* Responsive adjustments for smaller screens */
+@media (max-width: 1200px) {
+    .content, .author-section, .credits {
+        width: 100%;
+    }
 }
