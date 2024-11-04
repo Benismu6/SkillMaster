@@ -10,7 +10,7 @@ document.getElementById("become-provider").addEventListener("click", function() 
 
 // Event listener for both "sign-in" and "learn-new-skill-button" buttons
 document.getElementById("sign-in").addEventListener("click", function() {
-  window.location.href = "registration_page/login.html";
+  window.location.href = "profiles_pages/seeker-profile.html";
 });
 
 document.getElementById("learn-new-skill-button").addEventListener("click", function() {
