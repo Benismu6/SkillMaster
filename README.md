@@ -1,5 +1,9 @@
 Skill Sharing Platform
+
+Developed by Benis Munezero, Taitusi Vadei, Kirill Pankov, Angel O.
+
 Goal
+
 Our goal is to help users discover, share, learn, and teach a wide range of skills in an engaging and supportive community. Whether you're a beginner looking to acquire a new skill or an expert eager to share your knowledge, our platform provides the tools and resources to facilitate this exchange of expertise.
 
 Features
