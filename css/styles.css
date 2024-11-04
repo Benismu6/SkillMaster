@@ -23,7 +23,7 @@ a:hover {
 /* Navigation Bar */
 nav {
   background-color: #2C3E50;
-  padding: 10px 20px;
+  padding: 20px 20px;
   border-bottom: 1px solid #EEEEEE;
 }
 
@@ -246,6 +246,48 @@ nav ul a:hover {
   color: #666;
 }
 
+/* Seeker and Provider CTA Section */
+.cta-seeker-provider {
+  text-align: center;
+  background-color: #FFFFFF;
+  padding: 50px 20px;
+  color: #333;
+}
+
+.cta-seeker-provider h2 {
+  font-size: 28px;
+  color: #4CAF50;
+  margin-bottom: 20px;
+}
+
+.cta-seeker-provider p {
+  font-size: 16px;
+  margin-bottom: 30px;
+}
+
+.cta-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.seeker-button, .provider-button {
+  background-color: #4CAF50;
+  color: #FFFFFF;
+  border: none;
+  padding: 15px 30px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.seeker-button:hover, .provider-button:hover {
+  background-color: #FF7043;
+  transform: scale(1.05);
+  
+}
+
 /* Skills Section */
 #skills-section {
   background-color: #EAF8E6;
@@ -349,6 +391,7 @@ nav ul a:hover {
   font-style: italic;
 }
 
+
 /* Call to Action Section */
 #cta-section {
   background-color: #3A3A3A;
@@ -371,9 +414,10 @@ nav ul a:hover {
   background-color: #FF7043;
   color: #FFFFFF;
   padding: 15px 30px;
+  border: none;
   border-radius: 5px;
-  text-decoration: none;
   font-size: 16px;
+  cursor: pointer;
   transition: transform 0.3s, background-color 0.3s;
 }
 
@@ -382,78 +426,8 @@ nav ul a:hover {
   transform: scale(1.05);
 }
 
+
 /* Footer */
-footer {
-  background-color: #2C3E50;
-  color: #FFFFFF;
-  padding: 40px 20px;
-  text-align: center;
-  font-size: 14px;
-}
-
-.footer-section {
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.footer-elements {
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
-  margin-bottom: 20px;
-}
-
-.footer-contact, .footer-links, .footer-social {
-  min-width: 150px;
-  margin: 10px;
-}
-
-.footer-subscribe {
-  margin-bottom: 20px;
-}
-
-.footer-subscribe input {
-  padding: 8px;
-  margin-right: 10px;
-  border: none;
-  border-radius: 5px;
-}
-
-.footer-subscribe button {
-  padding: 8px 12px;
-  background-color: #4CAF50;
-  color: #FFFFFF;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.footer-subscribe button:hover {
-  background-color: #45A049;
-}
-
-.footer-copyright {
-  margin-top: 20px;
-  font-size: 12px;
-  color: #B0B0B0;
-}
-
-.footer-social .fa {
-  font-size: 24px;
-  color: #FFFFFF; /* White color */
-  margin: 0 10px;
-  background-color: red; 
-}
-
-.fa {
-  font-size: 24px;
-  color: #FFFFFF;
-  margin: 0 10px;
-}
-
-.fa:hover {
-  color: #4CAF50;
-}/* Footer */
 footer {
   background-color: #2C3E50;
   color: #FFFFFF;

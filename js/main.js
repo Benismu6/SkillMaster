@@ -1,24 +1,30 @@
-const container = document.getElementById('testimonial-container');
-const cards = document.querySelectorAll('.testimonial-card');
-const nextBtn = document.querySelector('.next');
-const prevBtn = document.querySelector('.prev');
+// Event listener for the "popular1" button
+document.getElementById("popular1").addEventListener("click", function() {
+  window.location.href = "LockpickingClassAngel/lockpickingClass.html";
+});
 
-let currentIndex = 0;
+// Event listener for the "become-provider" button
+document.getElementById("become-provider").addEventListener("click", function() {
+  window.location.href = "public/addService.html";
+});
 
-function showNextCard() {
-  currentIndex = (currentIndex + 1) % cards.length; // Loop to the start
-  updateCarousel();
-}
+// Event listener for both "sign-in" and "learn-new-skill-button" buttons
+document.getElementById("sign-in").addEventListener("click", function() {
+  window.location.href = "registration_page/login.html";
+});
 
-function showPrevCard() {
-  currentIndex = (currentIndex - 1 + cards.length) % cards.length; // Loop to the end
-  updateCarousel();
-}
+document.getElementById("learn-new-skill-button").addEventListener("click", function() {
+  window.location.href = "registration_page/login.html";
+});
 
-function updateCarousel() {
-  container.style.transform = `translateX(-${currentIndex * (cards[0].offsetWidth + 20)}px)`;
-}
+document.getElementById("sign-up").addEventListener("click", function() {
+  window.location.href = "sign_up/signup.html";
+});
 
-// Event Listeners
-nextBtn.addEventListener('click', showNextCard);
-prevBtn.addEventListener('click', showPrevCard);
+document.getElementById("learn-new-skill-button").addEventListener("click", function() {
+  window.location.href = "sign_up/signup.html";
+});
+
+document.getElementById("cta-button").addEventListener("click", function() {
+  window.location.href = "sign_up/signup.html";
+});

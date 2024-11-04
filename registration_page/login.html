@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Sign In</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <nav class="minimal-nav">
+      <a href="/homepage.html" class="logo">SkillMaster</a>
+      <a href="/homepage.html">Home</a>
+    </nav>
+    <h2>Log In</h2>
+    <input type="text" id="username" placeholder="Username" required>
+    <input type="password" id="password" placeholder="Password" required>
+    <button onclick="registerUser()">Register</button>
+    <p class="error" id="registerError"></p>
+    <p class="signup-prompt">Don't have an account? <a href="/sign_up/signup.html">Sign up</a></p>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Add Service</title>
+        <link rel="stylesheet" href="addService.css">
+    </head>
+    <body>
+        <nav class="minimal-nav">
+            <a href="index.html">Home</a>
+            <a href="profile.html">Profile</a>
+            <a href="logout.html">Sign Out</a>
+        </nav>
+        <h1>Add Your Service</h1>
+        <form id="serviceForm" action="/submit-service" method="POST" enctype="multipart/form-data">
+            <label for="title">Service Title:</label>
+            <input type="text" id="title" name="title" required>
+
+            <label for="description">Description:</label>
+            <textarea id="description" name="description" rows="4" required></textarea>
+
+            <label for="category">Category:</label>
+            <input type="text" id="category" name="category" placeholder="e.g., Tutoring, Graphic Design" required>
+
+            <label for="price">Price ($):</label>
+            <input type="number" id="price" name="price" min="1" step="0.01" required>
+
+            <label for="location">Location:</label>
+            <input type="text" id="location" name="location" placeholder="e.g., Campus, Online" required>
+
+            <label>Availability:</label>
+            <div>
+                <label><input type="checkbox" name="availability" value="Monday"> Monday</label>
+                <label><input type="checkbox" name="availability" value="Tuesday"> Tuesday</label>
+                <label><input type="checkbox" name="availability" value="Wednesday"> Wednesday</label>
+                <label><input type="checkbox" name="availability" value="Thursday"> Thursday</label>
+                <label><input type="checkbox" name="availability" value="Friday"> Friday</label>
+            </div>
+            <label for="time">Preferred Time:</label>
+            <select id="time" name="time">
+                <option value="morning">Morning</option>
+                <option value="afternoon">Afternoon</option>
+                <option value="evening">Evening</option>
+            </select>
+
+            <label for="experience">Experience Level:</label>
+            <select id="experience" name="experience">
+                <option value="beginner">Beginner</option>
+                <option value="intermediate">Intermediate</option>
+                <option value="expert">Expert</option>
+            </select>
+
+            <label for="contact">Contact Information:</label>
+            <input type="email" id="contact" name="contact" placeholder="Optional">
+
+            <label for="pricingDetails">Detailed Pricing Information:</label>
+            <textarea id="pricingDetails" name="pricingDetails" rows="3" placeholder="e.g., $20 per hour, cash only"></textarea>
+
+            <label for="serviceDetails">Additional Service Details:</label>
+            <textarea id="serviceDetails" name="serviceDetails" rows="3" placeholder="Any special requirements or notes"></textarea>
+
+            <label for="tags">Tags/Keywords:</label>
+            <input type="text" id="tags" name="tags" placeholder="e.g., guitar, design, tutoring">
+
+            <label for="fileUpload">Upload Image (Optional):</label>
+            <input type="file" id="fileUpload" name="fileUpload">
+
+            <button type="submit">Submit Service</button>
+        </form>
+        <p id="confirmationMessage"></p>
+
+        <script src="addService.js"></script>
+    </body>
+</html>
+

@@ -12,14 +12,14 @@
     <body>
         <nav class="navbar">
             <div class="navdiv">
-                <div class="logo"><a href="#">SkillMaster</a></div>
+                <div class="logo"><a href="homepage.html">SkillMaster</a></div>
                 <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Skills</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Contact</a></li>
-                    <button class="button"><a href="#">Sign In</a></button>
-                    <button class="button"><a href="#">Sign Up</a></button>
+                    <li><a href="homepage.html">Home</a></li>
+                    <li><a href="#skills-grid">Skills</a></li>
+                    <li><a href="about_us/aboutus.html">About Us</a></li>
+                    <li><a href="public\addService.html">Provide a Service</a></li>
+                    <button class="button" id="sign-in"><a href="#">Sign In</a></button>
+                    <button class="button" id="sign-up"><a href="#">Sign Up</a></button>
                 </ul>
             </div>
         </nav>
@@ -88,6 +88,15 @@
           </div>
         </div>        
 
+        <div class="cta-seeker-provider">
+          <h2>Join Our Community</h2>
+          <p>Whether you're looking to learn a new skill or share your expertise, we have a place for you.</p>
+          <div class="cta-buttons">
+            <button class="button seeker-button" id="learn-new-skill-button">Learn a new skill</button>
+            <button class="button provider-button" id="become-provider">Provide a Service</button>
+          </div>
+        </div>
+
         <div id="skills-section">
           <h2>Explore Popular Skills</h2>
           <div id="skills-grid">    
@@ -108,7 +117,7 @@
           <div class="gallery js-flickity" data-flickity-options='{ "wrapAround": true, "pageDots": false, "cellAlign": "center", "contain": true }'>
             <div class="gallery-cell">
               <img src="images/profile4.png" alt="User 1">
-              <p>"This platform has changed the way I learnnew skills off the pitch!"</p>
+              <p>"This platform has changed the way I learn new skills off the pitch!"</p>
               <p class="user-name">- L. Messi</p>
             </div>
             <div class="gallery-cell">
@@ -127,7 +136,7 @@
         <div id="cta-section">
           <h2>Ready to Start Your Journey?</h2>
           <p>Join our community and start mastering new skills today!</p>
-          <a href="#" class="cta-button">Get Started</a>
+          <button href="#" class="cta-button" id="cta-button">Get Started</button>
         </div>        
 
         <footer>
@@ -140,8 +149,8 @@
                 </div>
                 <div class="footer-links">
                     <h3>Quick Links</h3>
-                    <h5><a href="#">Home</a></h5>
-                    <h5><a href="#">About Us</a></h5>
+                    <h5><a href="homepage.html">Home</a></h5>
+                    <h5><a href="about_us/aboutus.html">About Us</a></h5>
                     <h5><a href="#">Privacy Policy</a></h5>
                 </div>
                 <div class="footer-social">
