@@ -20,67 +20,20 @@ a:hover {
   color: #FF7043;
 }
 
-/* Navigation Bar */
-.navbar {
+/* Minimal-nav */
+.minimal-nav {
   background-color: #2C3E50;
   padding: 20px;
+  text-align: center;
 }
-
-.navdiv {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.logo a {
-  font-size: 35px;
-  font-weight: 600;
+.minimal-nav a {
   color: #FFFFFF;
+  margin: 0 15px;
   text-decoration: none;
+  font-size: 20px;
 }
-
-nav ul {
-  list-style: none;
-  display: flex;
-  gap: 25px;
-  margin: 0;
-  padding: 0;
-  align-items: center;
-}
-
-nav ul li {
-  display: inline;
-}
-
-nav ul a {
-  color: #FFFFFF;
-  font-size: 18px;
-  font-weight: bold;
-}
-
-nav ul a:hover {
+.minimal-nav a:hover {
   color: #FF7043;
-}
-
-.button {
-  background-color: #4CAF50;
-  color: #FFFFFF;
-  border: none;
-  border-radius: 5px;
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
-  margin-left: 10px;
-  transition: background-color 0.3s;
-}
-
-.button a {
-  color: #FFFFFF;
-  text-decoration: none;
-}
-
-.button:hover {
-  background-color: #FF7043;
 }
 
 /* About Section */

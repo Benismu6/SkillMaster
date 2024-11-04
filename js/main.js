@@ -28,3 +28,7 @@ document.getElementById("learn-new-skill-button").addEventListener("click", func
 document.getElementById("cta-button").addEventListener("click", function() {
   window.location.href = "sign_up/signup.html";
 });
+
+document.getElementById("forum-button").addEventListener("click", function() {
+  window.location.href = "community_section/community.html";
+});

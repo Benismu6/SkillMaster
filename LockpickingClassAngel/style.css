@@ -85,14 +85,14 @@ h1 {
 /* Minimal-nav */
 .minimal-nav {
   background-color: #2C3E50;
-  padding: 10px;
+  padding: 20px;
   text-align: center;
 }
 .minimal-nav a {
   color: #FFFFFF;
   margin: 0 15px;
   text-decoration: none;
-  font-size: 16px;
+  font-size: 20px;
 }
 .minimal-nav a:hover {
   color: #FF7043;

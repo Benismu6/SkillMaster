@@ -7,11 +7,13 @@ body {
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-    background-color: #4CAF50;
+    background-color: #f4f4f4;
+    margin-bottom: 15px;
 }
 
 h1 {
-    margin-bottom: 20px;
+    margin-bottom: 30px;
+    color: #4CAF50;
 }
 
 form {
@@ -19,11 +21,11 @@ form {
     flex-direction: column;
     width: 100%;
     max-width: 500px;
-    padding: 20px 150px;
+    padding: 40px 150px;
     border: 1px solid #ddd;
-    border-radius: 8px;
-    background-color: #f5f0ed;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 35px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     margin-bottom: 40px;
 }
 
@@ -59,7 +61,8 @@ button {
 }
 
 button:hover {
-    background-color: #45a049;
+    transform: scale(1.1);
+    background-color: #FF7043;
 }
 
 #confirmationMessage {
@@ -93,12 +96,12 @@ button:hover {
 }
 
 input[required], textarea[required], select[required] {
-    border-left: 3px solid #FF6347;
+    border-left: 3px solid #FF7043;
 }
 
 .minimal-nav {
     background-color: #2C3E50;
-    padding: 10px;
+    padding: 20px;
     text-align: center;
     width: 100%;
   }
@@ -106,7 +109,7 @@ input[required], textarea[required], select[required] {
     color: #FFFFFF;
     margin: 0 15px;
     text-decoration: none;
-    font-size: 16px;
+    font-size: 20px;
   }
   .minimal-nav a:hover {
     color: #FF7043;

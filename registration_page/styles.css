@@ -10,7 +10,7 @@ body {
   
   .container {
     width: 300px;
-    padding: 20px;
+    padding: 50px;
     background-color: #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
@@ -38,10 +38,12 @@ body {
     border-radius: 5px;
     cursor: pointer;
     margin-top: 10px;
+    transition: 0.3s ease;
   }
   
   button:hover {
-    background-color: #218838;
+    background-color: #FF7043;
+    transform: scale(1.1);
   }
   
   .error {

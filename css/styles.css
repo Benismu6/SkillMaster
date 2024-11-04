@@ -339,9 +339,82 @@ nav ul a:hover {
   transform: scale(1.1);
 }
 
+/* Community Section */
+#community-section {
+  background-color: #F9F9F9;
+  padding: 70px 30px;
+  text-align: center;
+}
+
+#community-section h2 {
+  font-size: 32px;
+  margin-bottom: 40px;
+  color: #4CAF50;
+}
+
+.community-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.discussion-forum, .leaderboard {
+  background-color: #FFFFFF;
+  border: 1px solid #DDDDDD;
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  width: 350px;
+  transition: transform 0.3s;
+}
+
+.discussion-forum:hover, .leaderboard:hover {
+  transform: translateY(-10px);
+}
+
+h3 {
+  font-size: 24px;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+p {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.leaderboard-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 20px 0;
+}
+
+.leaderboard-list li {
+  font-size: 18px;
+  color: #666;
+  margin-bottom: 12px;
+}
+
+#forum-button {
+  background-color: #4CAF50;
+  color: #FFFFFF;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 6px; 
+  cursor: pointer;
+  font-size: 18px; 
+  transition: background-color 0.3s;
+}
+
+#forum-button:hover {
+  background-color: #FF7043;
+}
+
+
 /* Testimonials Section */
 #testimonials-section {
-  background-color: #F9F9F9;
+  background-color: #EAF8E6;
   text-align: center;
   padding: 60px 20px;
 }
@@ -431,7 +504,7 @@ nav ul a:hover {
 footer {
   background-color: #2C3E50;
   color: #FFFFFF;
-  padding: 40px 20px;
+  padding: 20px 20px;
   text-align: center;
   font-size: 14px;
 }
@@ -474,12 +547,12 @@ footer {
 }
 
 .footer-subscribe button:hover {
-  background-color: #45A049;
+  background-color: #FF7043;
 }
 
 .footer-copyright {
   margin-top: 20px;
-  font-size: 12px;
+  font-size: 16px;
   color: #B0B0B0;
 }
 
@@ -495,3 +568,6 @@ footer {
   color: #4CAF50; 
 }
 
+.footer-section h3 {
+  color: #FFFFFF;
+}
