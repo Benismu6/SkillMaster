@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Sign Up</title>
+  <link rel="stylesheet" href="styles.css">
+  <script>
+    function toggleFields() {
+      const role = document.getElementById("role").value;
+      const providerFields = document.getElementById("provider-fields");
+      
+      if (role === "Provider") {
+        providerFields.style.display = "block";
+      } else {
+        providerFields.style.display = "none";
+      }
+    }
+  </script>
+</head>
+<body>
+  <div class="container">
+    <nav class="minimal-nav">
+        <a href="/homepage.html" class="logo">SkillMaster</a>
+        <a href="/homepage.html">Home</a>
+    </nav>
+
+    <h2>Sign Up</h2>
+    <select id="role" onchange="toggleFields()">
+      <option value="Seeker">Seeker</option>
+      <option value="Provider">Provider</option>
+    </select>
+
+    <input type="text" id="username" placeholder="Username" required>
+    <input type="email" id="email" placeholder="Email" required>
+    <input type="password" id="password" placeholder="Password" required>
+
+    <div id="provider-fields" style="display: none;">
+      <input type="text" id="credentials" placeholder="Credentials (e.g., certifications, experience)" required>
+      <p class="info">We will review your credentials to ensure proficiency. This may take some time.</p>
+    </div>
+
+    <button onclick="registerUser()">Register</button>
+    <p class="error" id="registerError"></p>
+    <p>Already have an account? <a href="\registration_page/login.html">Log In</a></p>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

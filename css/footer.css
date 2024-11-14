@@ -1,0 +1,72 @@
+/* Footer Styles */
+footer {
+    background-color: #2C3E50; 
+    color: #FFFFFF; 
+    padding: 40px 20px; 
+    font-size: 14px;
+    text-align: center;
+    }
+    
+    .footer-section {
+    max-width: 1200px; 
+    margin: 0 auto; 
+    }
+    
+    .footer-elements {
+    display: flex; 
+    justify-content: space-around; 
+    flex-wrap: wrap; 
+    margin-bottom: 20px; 
+    }
+    
+    .footer-contact, .footer-links, .footer-social {
+    flex: 1;
+    min-width: 150px; 
+    margin: 10px;
+    }
+    
+    .footer-contact h5, .footer-links h5, .footer-social h5 {
+    margin: 5px 0;
+    color: #FFFFFF; 
+    }
+    
+    .footer-subscribe {
+    margin-bottom: 20px;
+    }
+    
+    .footer-subscribe input {
+    padding: 8px;
+    margin-right: 10px;
+    border: none;
+    border-radius: 5px;
+    }
+    
+    .footer-subscribe button {
+    padding: 8px 12px;
+    background-color: #4CAF50; 
+    color: #FFFFFF;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    }
+    
+    .footer-subscribe button:hover {
+    background-color: #45A049; 
+    }
+    
+    .footer-copyright {
+    margin-top: 20px;
+    font-size: 12px; 
+    color: #B0B0B0; 
+    }
+    
+    .fa {
+    font-size: 20px; 
+    color: #FFFFFF; 
+    margin: 0 10px; 
+    text-decoration: none;
+    }
+    
+    .fa:hover {
+    color: #4CAF50; 
+    }
