@@ -5,7 +5,7 @@ document.getElementById("popular1").addEventListener("click", function() {
 
 // Event listener for the "become-provider" button
 document.getElementById("become-provider").addEventListener("click", function() {
-  window.location.href = "public/addService.html";
+  window.location.href = "../addService_page/addService.html";
 });
 
 // Event listener for both "sign-in" and "learn-new-skill-button" buttons

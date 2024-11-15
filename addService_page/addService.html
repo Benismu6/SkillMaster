@@ -13,7 +13,7 @@
         <a href="#">Sign Out</a>
     </nav>
     <h1>Add Your Service</h1>
-    <form id="serviceForm" action="/submit-service" method="POST" enctype="multipart/form-data">
+    <form id="serviceForm">
         <label for="title">Service Title:</label>
         <input type="text" id="title" name="title" required>
 
@@ -26,23 +26,31 @@
         <label for="price">Price ($):</label>
         <input type="number" id="price" name="price" min="1" step="0.01" required>
 
-        <label for="location">Location:</label>
-        <input type="text" id="location" name="location" placeholder="e.g., Campus, Online" required>
+        <label>Method of Delivery:</label>
+        <label><input type="radio" name="serviceType" value="live" id="liveService"> Live Video Streaming</label>
+        <label><input type="radio" name="serviceType" value="post" id="postService"> Post Content Online</label>
 
-        <label>Availability:</label>
-        <div>
-            <label><input type="checkbox" name="availability" value="Monday"> Monday</label>
-            <label><input type="checkbox" name="availability" value="Tuesday"> Tuesday</label>
-            <label><input type="checkbox" name="availability" value="Wednesday"> Wednesday</label>
-            <label><input type="checkbox" name="availability" value="Thursday"> Thursday</label>
-            <label><input type="checkbox" name="availability" value="Friday"> Friday</label>
+        <div id="availabilitySection" style="display: none;">
+            <label>Availability:</label>
+            <div>
+                <label><input type="checkbox" name="availability" value="Monday"> Monday</label>
+                <label><input type="checkbox" name="availability" value="Tuesday"> Tuesday</label>
+                <label><input type="checkbox" name="availability" value="Wednesday"> Wednesday</label>
+                <label><input type="checkbox" name="availability" value="Thursday"> Thursday</label>
+                <label><input type="checkbox" name="availability" value="Friday"> Friday</label>
+            </div>
+            <label for="time">Preferred Time:</label>
+            <select id="time" name="time">
+                <option value="morning">Morning</option>
+                <option value="afternoon">Afternoon</option>
+                <option value="evening">Evening</option>
+            </select>
         </div>
-        <label for="time">Preferred Time:</label>
-        <select id="time" name="time">
-            <option value="morning">Morning</option>
-            <option value="afternoon">Afternoon</option>
-            <option value="evening">Evening</option>
-        </select>
+
+        <div id="liveStreamLinkSection" style="display: none;">
+            <label for="liveStreamLink">Livestreaming Link:</label>
+            <input type="url" id="liveStreamLink" name="liveStreamLink" placeholder="Enter livestreaming link">
+        </div>
 
         <label for="experience">Experience Level:</label>
         <select id="experience" name="experience">
@@ -52,10 +60,7 @@
         </select>
 
         <label for="contact">Contact Information:</label>
-        <input type="email" id="contact" name="contact" placeholder="Optional">
-
-        <label for="pricingDetails">Detailed Pricing Information:</label>
-        <textarea id="pricingDetails" name="pricingDetails" rows="3" placeholder="e.g., $20 per hour, cash only"></textarea>
+        <input type="email" id="contact" name="contact" placeholder="Your most available contact form">
 
         <label for="serviceDetails">Additional Service Details:</label>
         <textarea id="serviceDetails" name="serviceDetails" rows="3" placeholder="Any special requirements or notes"></textarea>

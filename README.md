@@ -9,7 +9,7 @@ Our goal is to help users discover, share, learn, and teach a wide range of skil
 Features
 - Interactive Courses: Users can participate in interactive, self-paced courses to master new skills efficiently.
 - Skill Mastery and Badges: Earn badges and rewards as you progress through different skill levels, showcasing your accomplishments to the community.
-- User Testimonials: Hear from our community members about their experiences and the value they’ve gained from using our platform.
+- UserModel Testimonials: Hear from our community members about their experiences and the value they’ve gained from using our platform.
 - Become a Seeker or Provider: Users have the option to either become a "Seeker," exploring new skills and learning from others, or a "Provider," sharing their expertise and teaching skills to the community.
 - Seamless Navigation: A clean and user-friendly interface allows for easy navigation between home, skills, about, and contact pages.
 - Call to Action: Clear and engaging calls to action, encouraging users to sign up, start their learning journey, or contribute as skill providers.
@@ -24,7 +24,7 @@ Technologies Used
 
 Future Improvements
 
-- User Profiles: Enable users to create detailed profiles, listing their skills, achievements, and courses completed.
+- UserModel Profiles: Enable users to create detailed profiles, listing their skills, achievements, and courses completed.
 - Advanced Search Functionality: Implement a robust search system to help users find specific skills or courses more efficiently.
 - Community Forums: Introduce discussion forums where users can ask questions, share experiences, and engage with fellow learners and providers.
 

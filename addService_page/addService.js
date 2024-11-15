@@ -5,6 +5,29 @@ document.addEventListener("DOMContentLoaded", function() {
     const form = document.getElementById("serviceForm");
     const confirmationMessage = document.getElementById("confirmationMessage");
 
+    // New elements for service type selection, availability section, and live stream link
+    const liveServiceRadio = document.getElementById("liveService");
+    const postServiceRadio = document.getElementById("postService");
+    const availabilitySection = document.getElementById("availabilitySection");
+    const liveStreamLinkSection = document.getElementById("liveStreamLinkSection");
+
+    // Function to toggle availability section and live stream link based on service type
+    function toggleServiceTypeSections() {
+        if (liveServiceRadio.checked) {
+            availabilitySection.style.display = "block";
+            liveStreamLinkSection.style.display = "block";
+        } else if (postServiceRadio.checked) {
+            availabilitySection.style.display = "none";
+            liveStreamLinkSection.style.display = "none";
+        }
+    }
+
+    // Set up event listeners for radio buttons to toggle sections
+    liveServiceRadio.addEventListener("change", toggleServiceTypeSections);
+    postServiceRadio.addEventListener("change", toggleServiceTypeSections);
+
+    // Main function that initializes form handling
+
     // Main function that initializes form handling
     function initializeForm() {
         // Set up event listener for the form submission
@@ -56,16 +79,15 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Function to send data to the server
     function sendDataToServer(serviceData) {
-        // Use fetch to send a POST request with JSON data
-        fetch("/submit-service", {
+        fetch("/api/services", {  // Connects to the backend endpoint
             method: "POST",
             headers: {
-                "Content-Type": "application/json" // Indicate JSON data is being sent
+                "Content-Type": "application/json"  // Sending JSON data
             },
-            body: JSON.stringify(serviceData) // Convert data object to JSON format
+            body: JSON.stringify(serviceData)  // Data from the form, in JSON format
         })
-            .then(response => response.json()) // Parse server response as JSON
-            .then(data => displayConfirmationMessage(data.message)) // Show success message
+            .then(response => response.json())  // Parses the response from the backend
+            .then(data => displayConfirmationMessage("Service submitted successfully!"))  // Shows success
             .catch(error => displayErrorMessage("Error submitting service. Please try again."));
     }
 
