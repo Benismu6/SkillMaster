@@ -1,109 +1,85 @@
-// Run the script only after the page content has loaded
+// Wait until the DOM content is fully loaded before running the script
 document.addEventListener("DOMContentLoaded", function() {
-
-    // Get references to the form and confirmation message elements
+    // Get references to important elements on the page
     const form = document.getElementById("serviceForm");
-    const confirmationMessage = document.getElementById("confirmationMessage");
-
-    // New elements for service type selection, availability section, and live stream link
     const liveServiceRadio = document.getElementById("liveService");
     const postServiceRadio = document.getElementById("postService");
-    const availabilitySection = document.getElementById("availabilitySection");
     const liveStreamLinkSection = document.getElementById("liveStreamLinkSection");
+    const tutorialSection = document.getElementById("tutorialSection");
+    const stepsSection = document.getElementById("stepsSection");
+    const addStepButton = document.getElementById("addStepButton");
+    const confirmationMessage = document.getElementById("confirmationMessage");
+    let stepCount = 1; // Counter for tracking the number of steps added
 
-    // Function to toggle availability section and live stream link based on service type
-    function toggleServiceTypeSections() {
+    // Function to toggle between livestreaming and tutorial sections
+    function toggleSections() {
         if (liveServiceRadio.checked) {
-            availabilitySection.style.display = "block";
+            // Show livestreaming link section if "Live Video Streaming" is selected
             liveStreamLinkSection.style.display = "block";
+            tutorialSection.style.display = "none";
         } else if (postServiceRadio.checked) {
-            availabilitySection.style.display = "none";
+            // Show tutorial creation section if "Post Content Online" is selected
             liveStreamLinkSection.style.display = "none";
+            tutorialSection.style.display = "block";
         }
     }
 
-    // Set up event listeners for radio buttons to toggle sections
-    liveServiceRadio.addEventListener("change", toggleServiceTypeSections);
-    postServiceRadio.addEventListener("change", toggleServiceTypeSections);
+    // Event listeners for radio buttons to toggle sections
+    liveServiceRadio.addEventListener("change", toggleSections);
+    postServiceRadio.addEventListener("change", toggleSections);
 
-    // Main function that initializes form handling
+    // Function to add a new step to the tutorial
+    addStepButton.addEventListener("click", () => {
+        stepCount++; // Increment step counter
+        const newStep = document.createElement("div");
+        newStep.classList.add("step"); // Add a class for styling
+        newStep.id = `step${stepCount}`; // Unique ID for the step
+        newStep.innerHTML = `
+            <h3>Step ${stepCount}</h3>
+            <label for="stepTitle${stepCount}">Step Title:</label>
+            <input type="text" id="stepTitle${stepCount}" name="stepTitle${stepCount}" required>
+            
+            <label for="stepDescription${stepCount}">Step Description:</label>
+            <textarea id="stepDescription${stepCount}" name="stepDescription${stepCount}" rows="4" required></textarea>
 
-    // Main function that initializes form handling
-    function initializeForm() {
-        // Set up event listener for the form submission
-        form.addEventListener("submit", handleFormSubmit);
-    }
+            <label for="stepMedia${stepCount}">Upload Media (Optional):</label>
+            <input type="file" id="stepMedia${stepCount}" name="stepMedia${stepCount}" accept="image/*,video/*">
+        `;
+        stepsSection.appendChild(newStep); // Add the new step to the steps section
+    });
 
-    // Function to collect data from the form fields
-    function collectFormData() {
-        // Gather data from each input field and return it as an object
-        return {
-            title: document.getElementById("title").value,
-            description: document.getElementById("description").value,
-            category: document.getElementById("category").value,
-            price: document.getElementById("price").value,
-            location: document.getElementById("location").value,
+    // Event listener for form submission
+    form.addEventListener("submit", (event) => {
+        event.preventDefault(); // Prevent default page refresh on form submission
 
-            // Collect checked values for availability checkboxes
-            availability: Array.from(document.querySelectorAll("input[name='availability']:checked"))
-                .map(checkbox => checkbox.value),
+        // Create a FormData object to gather form data
+        const formData = new FormData(form);
+        if (postServiceRadio.checked) {
+            // Collect tutorial steps if "Post Content Online" is selected
+            const steps = Array.from(stepsSection.querySelectorAll(".step")).map((step, index) => ({
+                stepNumber: index + 1,
+                stepTitle: step.querySelector(`#stepTitle${index + 1}`).value,
+                stepDescription: step.querySelector(`#stepDescription${index + 1}`).value,
+            }));
+            formData.append("tutorialSteps", JSON.stringify(steps));
+        }
 
-            // Dropdown selections
-            time: document.getElementById("time").value,
-            experience: document.getElementById("experience").value,
-
-            // Optional fields
-            contact: document.getElementById("contact").value,
-            pricingDetails: document.getElementById("pricingDetails").value,
-            serviceDetails: document.getElementById("serviceDetails").value,
-
-            // Tags split into an array
-            tags: document.getElementById("tags").value.split(",").map(tag => tag.trim())
-        };
-    }
-
-    // Function to handle form submission
-    function handleFormSubmit(event) {
-        // Prevent the default page refresh behavior on form submission
-        event.preventDefault();
-
-        // Collect data from the form
-        const serviceData = collectFormData();
-
-        // Log data to confirm it has been collected correctly
-        console.log("Service Data to Send:", serviceData);
-
-        // Send the collected data to the server
-        sendDataToServer(serviceData);
-    }
-
-    // Function to send data to the server
-    function sendDataToServer(serviceData) {
-        fetch("/api/services", {  // Connects to the backend endpoint
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"  // Sending JSON data
-            },
-            body: JSON.stringify(serviceData)  // Data from the form, in JSON format
+        // Send the form data to the server
+        fetch("/api/services", {
+            method: "POST", // Use POST method
+            body: formData, // Send the form data
         })
-            .then(response => response.json())  // Parses the response from the backend
-            .then(data => displayConfirmationMessage("Service submitted successfully!"))  // Shows success
-            .catch(error => displayErrorMessage("Error submitting service. Please try again."));
-    }
-
-    // Function to display a success message on the page
-    function displayConfirmationMessage(message) {
-        confirmationMessage.textContent = message;
-        confirmationMessage.style.color = "green";
-        form.reset(); // Clear the form after successful submission
-    }
-
-    // Function to display an error message on the page
-    function displayErrorMessage(message) {
-        confirmationMessage.textContent = message;
-        confirmationMessage.style.color = "red";
-    }
-
-    // Initialize the form handling
-    initializeForm();
+            .then(response => response.json()) // Parse the response as JSON
+            .then(data => {
+                // Display a success message
+                confirmationMessage.textContent = "Service submitted successfully!";
+                confirmationMessage.style.color = "green";
+                form.reset(); // Reset the form after submission
+            })
+            .catch(error => {
+                // Display an error message
+                confirmationMessage.textContent = "Error submitting service. Please try again.";
+                confirmationMessage.style.color = "red";
+            });
+    });
 });
