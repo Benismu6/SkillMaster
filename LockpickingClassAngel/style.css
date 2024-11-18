@@ -1,0 +1,189 @@
+/* style.css */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    color:#333;
+}
+
+.content-wrapper {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+h1 {
+    color: #333;
+}
+
+.content {
+    margin-top: 20px;
+}
+
+.step {
+    margin: 20px 0;
+}
+
+.image-container {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transform-origin: center; /* Set transform origin to center for pop-out effect */
+}
+
+/* Zoom and shadow effect on hover */
+.image-container:hover {
+    transform: scale(1.05); /* Slightly scale the whole container */
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4); /* Adds depth to create a 3D effect */
+}
+
+/* Image styling */
+.image-container img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Credit overlay text */
+.image-credit {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    text-align: center;
+    padding: 5px;
+    font-size: 0.8em;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+/* Show the credit text on hover */
+.image-container:hover .image-credit {
+    opacity: 1;
+}
+
+.author-section {
+    margin-top: 40px;
+    text-align: center;
+}
+
+.author-section img {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    margin-bottom: 10px;
+}
+
+/* Minimal-nav */
+.minimal-nav {
+  background-color: #2C3E50;
+  padding: 20px;
+  text-align: center;
+}
+.minimal-nav a {
+  color: #FFFFFF;
+  margin: 0 15px;
+  text-decoration: none;
+  font-size: 20px;
+}
+.minimal-nav a:hover {
+  color: #FF7043;
+}
+
+/* Footer Styles */
+footer {
+  background-color: #2C3E50;
+  color: #FFFFFF;
+  padding: 40px 20px;
+  text-align: center;
+  font-size: 14px;
+  width: 100%;
+}
+
+.footer-section {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-elements {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.footer-contact, .footer-links, .footer-social {
+  min-width: 150px;
+  margin: 10px;
+}
+
+.footer-subscribe {
+  margin-bottom: 20px;
+}
+
+.footer-subscribe input {
+  padding: 8px;
+  margin-right: 10px;
+  border: none;
+  border-radius: 5px;
+}
+
+.footer-subscribe button {
+  padding: 8px 12px;
+  background-color: #4CAF50;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.footer-subscribe button:hover {
+  background-color: #45A049;
+}
+
+.footer-copyright {
+  margin-top: 20px;
+  font-size: 12px;
+  color: #B0B0B0;
+}
+
+.footer-social .fa {
+  font-size: 24px;
+  color: #4CAF50;
+  margin: 0 10px;
+}
+
+.footer-social .fa:hover {
+  color: #4CAF50;
+}
+
+
+footer a {
+  color: #4CAF50; 
+  text-decoration: none; 
+  font-size: 14px; 
+}
+
+footer a:hover {
+  color: #FF7043; /* Change color on hover */
+}
+
+.footer-links a, .footer-contact a, .footer-social a {
+  color: #4CAF50;
+  text-decoration: none;
+}
+
+.footer-links a:hover, .footer-contact a:hover, .footer-social a:hover {
+  color: #FF7043;
+}
+
+  
+  

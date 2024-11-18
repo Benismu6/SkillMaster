@@ -1,0 +1,219 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+/* Navigation */
+.minimal-nav {
+    background-color: #2C3E50;
+    padding: 20px;
+    text-align: center;
+}
+
+.minimal-nav a {
+    color: #FFFFFF;
+    margin: 0 15px;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+.minimal-nav a:hover {
+    color: #FF7043;
+}
+
+/* Header */
+.skills-header {
+    text-align: center;
+    padding: 40px 20px;
+    background-color: #4CAF50;
+    color: white;
+}
+
+.skills-header h1 {
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+.skills-header p {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.search-bar {
+    width: 80%;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    font-size: 16px;
+}
+
+/* Categories */
+.categories {
+    text-align: center;
+    padding: 20px;
+}
+
+.category-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.category-list li a {
+    color: #4CAF50;
+    font-size: 16px;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.category-list li a:hover {
+    color: #FF7043;
+}
+
+/* Skills Grid */
+.skills-grid-wrapper {
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px 30px; /* Increased gap for more padding between rows */
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-top: 50px;
+}
+
+.skill-card {
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.skill-card:hover {
+    transform: scale(1.12);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+.skill-card img {
+    width: 100%;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.skill-card h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #4CAF50;
+}
+
+.skill-details {
+    font-size: 14px;
+    color: #555;
+    opacity: 0;
+    max-height: 0;
+    transition: opacity 0.3s, max-height 0.3s;
+}
+
+.skill-card:hover .skill-details {
+    opacity: 1;
+    max-height: 100px;
+    margin-top: 10px;
+}
+
+/* Footer */
+footer {
+    background-color: #2C3E50;
+    color: #FFFFFF;
+    padding: 20px 20px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.footer-section {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-elements {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.footer-contact, .footer-links, .footer-social {
+    min-width: 150px;
+    margin: 10px;
+}
+
+.footer-subscribe {
+    margin-bottom: 20px;
+}
+
+.footer-subscribe input {
+    padding: 8px;
+    margin-right: 10px;
+    border: none;
+    border-radius: 5px;
+    width: 250px;
+}
+
+.footer-subscribe button {
+    padding: 8px 12px;
+    background-color: #4CAF50;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.footer-subscribe button:hover {
+    background-color: #45A049;
+}
+
+.footer-copyright {
+    margin-top: 20px;
+    font-size: 12px;
+    color: #B0B0B0;
+}
+
+.footer-social .fa {
+    font-size: 24px;
+    color: #FFFFFF;
+    margin: 0 10px;
+    background-color: transparent;
+}
+
+.footer-social .fa:hover {
+    color: #4CAF50;
+}
+
+.footer-section h3 {
+    color: #FFFFFF;
+}
+
+.footer-links a, 
+.footer-contact a, 
+.footer-social a {
+    color: #4CAF50;
+    text-decoration: none;
+}
+
+.footer-links a:hover, 
+.footer-contact a:hover, 
+.footer-social a:hover {
+    color: #FF7043;
+}
