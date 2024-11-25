@@ -5,46 +5,44 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>UserModel Sign Up</title>
   <link rel="stylesheet" href="styles.css">
-  <script>
-    function toggleFields() {
-      const role = document.getElementById("role").value;
-      const providerFields = document.getElementById("provider-fields");
-      
-      if (role === "Provider") {
-        providerFields.style.display = "block";
-      } else {
-        providerFields.style.display = "none";
-      }
-    }
-  </script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body>
-  <div class="container">
-    <nav class="minimal-nav">
-        <a href="/homepage.html" class="logo">SkillMaster</a>
-        <a href="/homepage.html">Home</a>
-    </nav>
+<div class="container">
+  <nav class="minimal-nav">
+    <a href="/homepage.html" class="logo">SkillMaster</a>
+    <a href="/homepage.html">Home</a>
+  </nav>
 
-    <h2>Sign Up</h2>
-    <select id="role" onchange="toggleFields()">
-      <option value="Seeker">Seeker</option>
-      <option value="Provider">Provider</option>
-    </select>
+  <h2>Sign Up</h2>
 
-    <input type="text" id="username" placeholder="Username" required>
-    <input type="email" id="email" placeholder="Email" required>
-    <input type="password" id="password" placeholder="Password" required>
+  <!-- Input for User ID -->
+  <input type="text" id="userId" placeholder="User ID (unique username)" required>
 
-    <div id="provider-fields" style="display: none;">
-      <input type="text" id="credentials" placeholder="Credentials (e.g., certifications, experience)" required>
-      <p class="info">We will review your credentials to ensure proficiency. This may take some time.</p>
-    </div>
+  <!-- Dropdown for selecting user role -->
+  <select id="role" onchange="toggleFields()">
+    <option value="Seeker">Seeker</option>
+    <option value="Provider">Provider</option>
+  </select>
 
-    <button onclick="registerUser()">Register</button>
-    <p class="error" id="registerError"></p>
-    <p>Already have an account? <a href="\registration_page/login.html">Log In</a></p>
+  <!-- Input fields for user information -->
+  <input type="text" id="username" placeholder="Full Name" required>
+  <input type="email" id="email" placeholder="Email" required>
+  <input type="password" id="password" placeholder="Password" required>
+
+  <!-- Additional fields for providers -->
+  <div id="provider-fields" style="display: none;">
+    <input type="text" id="credentials" placeholder="Credentials (e.g., certifications, experience)">
+    <p class="info">We will review your credentials to ensure proficiency. This may take some time.</p>
   </div>
 
-  <script src="script.js"></script>
+  <!-- Button to register the user -->
+  <button onclick="registerUser()">Register</button>
+  <p class="error" id="registerError"></p>
+  <p>Already have an account? <a href="\registration_page/login.html">Log In</a></p>
+</div>
+
+<!-- JavaScript to handle form submission -->
+<script src="script.js"></script>
 </body>
 </html>

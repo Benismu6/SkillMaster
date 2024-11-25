@@ -14,19 +14,19 @@ document.getElementById("sign-in").addEventListener("click", function() {
 });
 
 document.getElementById("learn-new-skill-button").addEventListener("click", function() {
-  window.location.href = "registration_page/login.html";
+  window.location.href = "../login_page/login.html";
 });
 
 document.getElementById("sign-up").addEventListener("click", function() {
-  window.location.href = "sign_up/signup.html";
+  window.location.href = "../sign_up/signup.html";
 });
 
 document.getElementById("learn-new-skill-button").addEventListener("click", function() {
-  window.location.href = "sign_up/signup.html";
+  window.location.href = "../sign_up/signup.html";
 });
 
 document.getElementById("cta-button").addEventListener("click", function() {
-  window.location.href = "sign_up/signup.html";
+  window.location.href = "../sign_up/signup.html";
 });
 
 document.getElementById("forum-button").addEventListener("click", function() {
