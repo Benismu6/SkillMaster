@@ -38,30 +38,32 @@ const ServiceSchema = new mongoose.Schema(
             required: true,
             min: 0, // Ensure non-negative price
         },
-        // Delivery method: Post Content Online or Live Video Streaming
-        deliveryMethod: {
-            type: String,
-            required: true,
-            enum: ["Post Content Online", "Live Video Streaming"], // Only these options allowed
-        },
         // Keywords for easier searching
         tags: {
             type: [String], // Array of strings
             default: [], // Optional field
         },
-        // Availability: Morning, Afternoon, or Evening
-        availability: {
-            type: [
-                {
-                    day: { type: String, required: true }, // E.g., Monday
-                    timeOfDay: {
-                        type: String,
-                        required: true,
-                        enum: ["Morning", "Afternoon", "Evening"], // Valid options
-                    },
-                },
-            ],
-            default: [], // Optional field
+        // Experience Level needed for the Service
+        experience: {
+            type: String,
+            enum: ["Beginner", "Intermediate", "Expert"],
+            default: "Beginner",
+        },
+        // Contact Information of the Service Provider
+        contact: {
+            type: String,
+            required: true,
+        },
+        // Additional Details of the Service
+        additionalDetails: {
+            type: String,
+            maxlength: 500,
+            default: null,
+        },
+        // Optional image for the service provided
+        imageUrl: {
+            type: String,
+            default: null,
         },
         // Timestamps for service creation and updates
     },

@@ -10,7 +10,7 @@ const router = express.Router();
  * Endpoint: /api/tutorials
  * Description: Allows providers to create a new tutorial for their service.
  */
-router.post("/", verifyToken, async (req, res) => {
+router.post("/", async (req, res) => {
     try {
         // Ensure the logged-in user is a provider
         if (!req.user.role.includes("provider")) {
@@ -87,7 +87,7 @@ router.get("/:id", async (req, res) => {
  * Endpoint: /api/tutorials/:id
  * Description: Allows providers to update their tutorial.
  */
-router.put("/:id", verifyToken, async (req, res) => {
+router.put("/:id", async (req, res) => {
     try {
         const tutorial = await Tutorial.findOne({ tutorialId: req.params.id });
 
@@ -120,7 +120,7 @@ router.put("/:id", verifyToken, async (req, res) => {
  * Endpoint: /api/tutorials/:id
  * Description: Allows providers to delete their tutorial.
  */
-router.delete("/:id", verifyToken, async (req, res) => {
+router.delete("/:id", async (req, res) => {
     try {
         const tutorial = await Tutorial.findOne({ tutorialId: req.params.id });
 

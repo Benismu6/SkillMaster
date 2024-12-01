@@ -10,7 +10,7 @@ const router = express.Router();
  * Endpoint: /api/messages
  * Description: Starts a new conversation or adds a message to an existing one.
  */
-router.post("/", verifyToken, async (req, res) => {
+router.post("/", async (req, res) => {
     try {
         const { participants, text } = req.body;
 
@@ -61,7 +61,7 @@ router.post("/", verifyToken, async (req, res) => {
  * Endpoint: /api/messages
  * Description: Retrieves all conversations for the logged-in user.
  */
-router.get("/", verifyToken, async (req, res) => {
+router.get("/", async (req, res) => {
     try {
         const conversations = await Message.find({ participants: req.user.userId });
         res.status(200).json({ conversations });
@@ -76,7 +76,7 @@ router.get("/", verifyToken, async (req, res) => {
  * Endpoint: /api/messages/:conversationId
  * Description: Retrieves a specific conversation by its ID.
  */
-router.get("/:conversationId", verifyToken, async (req, res) => {
+router.get("/:conversationId", async (req, res) => {
     try {
         const conversation = await Message.findOne({ conversationId: req.params.conversationId });
         if (!conversation) {
@@ -95,7 +95,7 @@ router.get("/:conversationId", verifyToken, async (req, res) => {
  * Endpoint: /api/messages/:conversationId
  * Description: Deletes a conversation and its messages.
  */
-router.delete("/:conversationId", verifyToken, async (req, res) => {
+router.delete("/:conversationId", async (req, res) => {
     try {
         const conversation = await Message.findOne({ conversationId: req.params.conversationId });
         if (!conversation) {

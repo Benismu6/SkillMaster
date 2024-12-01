@@ -151,7 +151,7 @@ router.get("/profile/:id", async (req, res) => {
  * Description: Allows a user to update their profile details.
  */
 // Protect the update profile route
-router.put("/profile/:id", verifyToken, async (req, res) => {
+router.put("/profile/:id", async (req, res) => {
     // Ensure the logged-in user is authorized to update this profile
     if (req.user.userId !== req.params.id) {
         return res.status(403).json({ message: "You are not authorized to update this profile." });
@@ -207,7 +207,7 @@ router.put("/profile/:id", verifyToken, async (req, res) => {
  * Description: Allows a user to delete their account.
  */
 // Protect the delete account route
-router.delete("/profile/:id", verifyToken, async (req, res) => {
+router.delete("/profile/:id", async (req, res) => {
     // Ensure the logged-in user is authorized to delete this account
     if (req.user.userId !== req.params.id) {
         return res.status(403).json({ message: "You are not authorized to update this profile." });

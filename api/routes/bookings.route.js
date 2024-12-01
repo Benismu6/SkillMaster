@@ -11,7 +11,7 @@ const router = express.Router();
  * Endpoint: /api/bookings
  * Description: Allows seekers to book a service.
  */
-router.post("/", verifyToken, async (req, res) => {
+router.post("/", async (req, res) => {
     try {
         const { serviceId, schedule } = req.body;
 
@@ -59,7 +59,7 @@ router.post("/", verifyToken, async (req, res) => {
  * Endpoint: /api/bookings
  * Description: Retrieve bookings for seekers or providers.
  */
-router.get("/", verifyToken, async (req, res) => {
+router.get("/", async (req, res) => {
     try {
         const query = req.user.role.includes("provider")
             ? { providerId: req.user.userId }
@@ -78,7 +78,7 @@ router.get("/", verifyToken, async (req, res) => {
  * Endpoint: /api/bookings/:id
  * Description: Retrieve details of a specific booking by its bookingId.
  */
-router.get("/:id", verifyToken, async (req, res) => {
+router.get("/:id", async (req, res) => {
     try {
         // Find the booking by bookingId
         const booking = await Booking.findOne({ bookingId: req.params.id });
@@ -110,7 +110,7 @@ router.get("/:id", verifyToken, async (req, res) => {
  * Endpoint: /api/bookings/:id
  * Description: Allows providers to confirm or cancel bookings.
  */
-router.put("/:id", verifyToken, async (req, res) => {
+router.put("/:id", async (req, res) => {
     try {
         const { status } = req.body;
 
@@ -138,7 +138,7 @@ router.put("/:id", verifyToken, async (req, res) => {
  * Endpoint: /api/bookings/:id
  * Description: Allows seekers or providers to cancel a booking.
  */
-router.delete("/:id", verifyToken, async (req, res) => {
+router.delete("/:id", async (req, res) => {
     try {
         const booking = await Booking.findOne({ bookingId: req.params.id });
         if (!booking) {

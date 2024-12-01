@@ -1,3 +1,4 @@
+/* General Body Style */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -11,45 +12,50 @@ body {
     margin-bottom: 15px;
 }
 
+/* Form Container Style */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Add spacing between form elements */
+    width: 100%;
+    max-width: 600px;
+    padding: 40px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 40px;
+}
+
+/* Headings */
 h1 {
     margin-bottom: 30px;
     color: #4CAF50;
 }
 
-form {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    max-width: 500px;
-    padding: 40px 150px;
-    border: 1px solid #ddd;
-    border-radius: 35px;
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin-bottom: 40px;
-}
-
+/* Labels */
 label {
     margin-top: 15px;
     font-weight: bold;
     color: #333;
 }
 
+/* Input, Textarea, and Select Fields */
 input, textarea, select {
-    margin-top: 8px;
+    margin-top: 5px;
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 5px;
     font-size: 1em;
+    width: 100%; /* Full width by default */
 }
 
 textarea {
     resize: vertical;
 }
 
+/* Buttons */
 button {
-    margin-top: 30px;
-    margin-bottom: 30px;
     padding: 12px;
     background-color: #4CAF50;
     color: white;
@@ -57,14 +63,15 @@ button {
     border-radius: 5px;
     cursor: pointer;
     font-size: 1em;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 button:hover {
-    transform: scale(1.1);
+    transform: scale(1.05);
     background-color: #FF7043;
 }
 
+/* Confirmation Messages */
 #confirmationMessage {
     color: green;
     font-size: 1em;
@@ -77,40 +84,89 @@ button:hover {
     color: red;
 }
 
-.field-group {
-    display: flex;
-    flex-direction: column;
-    margin-top: 20px;
-}
-
-.field-group label {
-    font-size: 0.9em;
-    color: #555;
-    font-weight: normal;
-}
-
-.checkbox-group, .availability-group {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-}
-
-input[required], textarea[required], select[required] {
-    border-left: 3px solid #FF7043;
-}
-
+/* Navigation Bar */
 .minimal-nav {
     background-color: #2C3E50;
     padding: 20px;
     text-align: center;
     width: 100%;
-  }
-  .minimal-nav a {
+}
+
+.minimal-nav a {
     color: #FFFFFF;
     margin: 0 15px;
     text-decoration: none;
     font-size: 20px;
-  }
-  .minimal-nav a:hover {
+}
+
+.minimal-nav a:hover {
     color: #FF7043;
-  }
+}
+
+/* Field Groups */
+.field-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+/* Availability Section */
+#availability {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Add space between rows */
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.availability-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Steps Section */
+#stepsSection {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.step {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fefefe;
+}
+
+/* Add Step Button */
+#addStepButton {
+    align-self: flex-start;
+    padding: 8px 16px;
+    background-color: #1976D2;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+}
+
+#addStepButton:hover {
+    background-color: #135BA1;
+    transform: scale(1.05);
+}
+
+/* Required Fields */
+input[required], textarea[required], select[required] {
+    border-left: 3px solid #FF7043;
+}

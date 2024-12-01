@@ -11,7 +11,7 @@ const router = express.Router(); // Create a router instance
  * Endpoint: /api/services
  * Description: Allows providers to add a new service.
  */
-router.post("/", verifyToken, async (req, res) => {
+router.post("/", async (req, res) => {
     try {
         // Ensure the logged-in user is a provider
         if (!req.user.role.includes("provider")) {
@@ -19,7 +19,17 @@ router.post("/", verifyToken, async (req, res) => {
         }
 
         // Extract service details from the request body
-        const { title, description, category, price, deliveryMethod, tags, availability } = req.body;
+        const {
+            title,
+            description,
+            category,
+            price,
+            tags,
+            experience,
+            contact,
+            additionalDetails,
+            imageUrl,
+        } = req.body;
 
         // Create a unique serviceId
         const serviceId = `service_${Date.now()}`;
@@ -32,9 +42,11 @@ router.post("/", verifyToken, async (req, res) => {
             description,
             category,
             price,
-            deliveryMethod,
             tags,
-            availability,
+            experience,
+            contact,
+            additionalDetails,
+            imageUrl,
         });
 
         // Save the service to the database
@@ -172,7 +184,7 @@ router.put("/:id", verifyToken, async (req, res) => {
  * Endpoint: /api/services/:id
  * Description: Allows providers to delete their own services.
  */
-router.delete("/:id", verifyToken, async (req, res) => {
+router.delete("/:id", async (req, res) => {
     try {
         // Find the service by serviceId
         const service = await Service.findOne({ serviceId: req.params.id });

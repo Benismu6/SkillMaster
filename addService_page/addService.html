@@ -18,82 +18,78 @@
 
 <!-- Main form for adding a service -->
 <form id="serviceForm">
-    <!-- Input for the service title -->
-    <label for="title">Service Title:</label>
-    <input type="text" id="title" name="title" required>
+    <!-- Service Details Section -->
+    <fieldset>
+        <legend>Service Details</legend>
 
-    <!-- Text area for a brief description of the service -->
-    <label for="description">Description:</label>
-    <textarea id="description" name="description" rows="4" required></textarea>
+        <label for="title">Service Title:</label>
+        <input type="text" id="title" name="title" required>
+        <!-- Maps to the 'title' field in the schema -->
 
-    <!-- Input for the category of the service -->
-    <label for="category">Category:</label>
-    <input type="text" id="category" name="category" placeholder="e.g., Tutoring, Graphic Design" required>
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" rows="4" required></textarea>
+        <!-- Maps to the 'description' field in the schema -->
 
-    <!-- Input for the price of the service -->
-    <label for="price">Price ($):</label>
-    <input type="number" id="price" name="price" min="1" step="0.01" required>
+        <label for="category">Category:</label>
+        <input type="text" id="category" name="category" placeholder="e.g., Tutoring, Graphic Design" required>
+        <!-- Maps to the 'category' field in the schema -->
 
-    <!-- Options for selecting the method of delivery -->
-    <label>Method of Delivery:</label>
-    <label><input type="radio" name="serviceType" value="live" id="liveService"> Live Video Streaming</label>
-    <label><input type="radio" name="serviceType" value="post" id="postService"> Post Content Online</label>
+        <label for="price">Price ($):</label>
+        <input type="number" id="price" name="price" min="1" step="0.01" required>
+        <!-- Maps to the 'price' field in the schema -->
 
-    <!-- Section for livestreaming details, hidden by default -->
-    <div id="liveStreamLinkSection" style="display: none;">
-        <label for="liveStreamLink">Livestreaming Link:</label>
-        <input type="url" id="liveStreamLink" name="liveStreamLink" placeholder="Enter livestreaming link">
-    </div>
+        <label for="experience">Experience Level:</label>
+        <select id="experience" name="experience">
+            <option value="beginner">Beginner</option>
+            <option value="intermediate">Intermediate</option>
+            <option value="expert">Expert</option>
+        </select>
+        <!-- Maps to the 'experience' field in the schema -->
 
-    <!-- Section for creating a tutorial, hidden by default -->
-    <div id="tutorialSection" style="display: none;">
-        <h2>Create Tutorial</h2>
-        <!-- This is where the tutorial steps will be added -->
+        <label for="contact">Contact Information:</label>
+        <input type="email" id="contact" name="contact" placeholder="Your most available contact">
+        <!-- Maps to the 'contact' field in the schema -->
+
+        <label for="additionalDetails">Additional Service Details:</label>
+        <textarea id="additionalDetails" name="additionalDetails" rows="3" placeholder="Any special requirements or notes"></textarea>
+        <!-- Maps to the 'additionalDetails' field in the schema -->
+
+        <label for="tags">Tags/Keywords:</label>
+        <input type="text" id="tags" name="tags" placeholder="e.g., guitar, design, tutoring">
+        <!-- Maps to the 'tags' field in the schema -->
+
+        <label for="imageUrl">Image URL (Optional):</label>
+        <input type="url" id="imageUrl" name="imageUrl" placeholder="Enter URL of image">
+        <!-- Maps to the 'imageUrl' field in the schema -->
+    </fieldset>
+
+    <!-- Tutorial Details Section -->
+    <fieldset>
+        <legend>Tutorial Details</legend>
+
+        <label for="tutorialTitle">Tutorial Title:</label>
+        <input type="text" id="tutorialTitle" name="tutorialTitle" required>
+        <!-- Maps to the 'title' field in the tutorial schema -->
+
+        <label for="tutorialDescription">Tutorial Description:</label>
+        <textarea id="tutorialDescription" name="tutorialDescription" rows="4" placeholder="Brief tutorial description"></textarea>
+        <!-- Maps to the 'description' field in the tutorial schema -->
+
         <fieldset id="stepsSection">
-            <legend>Steps</legend>
-            <!-- First step is included by default -->
-            <div class="step" id="step1">
-                <h3>Step 1</h3>
-                <label for="stepTitle1">Step Title:</label>
-                <input type="text" id="stepTitle1" name="stepTitle1" required>
-
-                <label for="stepDescription1">Step Description:</label>
-                <textarea id="stepDescription1" name="stepDescription1" rows="4" required></textarea>
-
-                <label for="stepMedia1">Upload Media (Optional):</label>
-                <input type="file" id="stepMedia1" name="stepMedia1" accept="image/*,video/*">
+            <legend>Tutorial Steps</legend>
+            <div class="step" id="step-1">
+                <label for="stepContent-1">Step 1 Content:</label>
+                <textarea id="stepContent-1" name="steps[0][content]" rows="3" required></textarea>
+                <label for="stepMedia-1">Media URLs (comma-separated):</label>
+                <input type="text" id="stepMedia-1" name="steps[0][media]" placeholder="e.g., http://example.com/image.jpg">
             </div>
+            <!-- More steps will be added dynamically -->
         </fieldset>
-        <!-- Button to add additional steps -->
-        <button type="button" id="addStepButton">Add Another Step</button>
-    </div>
+        <button type="button" id="addStepButton">Add Step</button>
+    </fieldset>
 
-    <!-- Dropdown for selecting experience level -->
-    <label for="experience">Experience Level:</label>
-    <select id="experience" name="experience">
-        <option value="beginner">Beginner</option>
-        <option value="intermediate">Intermediate</option>
-        <option value="expert">Expert</option>
-    </select>
-
-    <!-- Input for the provider's contact information -->
-    <label for="contact">Contact Information:</label>
-    <input type="email" id="contact" name="contact" placeholder="Your most available contact form">
-
-    <!-- Text area for additional service details -->
-    <label for="serviceDetails">Additional Service Details:</label>
-    <textarea id="serviceDetails" name="serviceDetails" rows="3" placeholder="Any special requirements or notes"></textarea>
-
-    <!-- Input for adding tags or keywords -->
-    <label for="tags">Tags/Keywords:</label>
-    <input type="text" id="tags" name="tags" placeholder="e.g., guitar, design, tutoring">
-
-    <!-- Optional file upload for an image -->
-    <label for="fileUpload">Upload Image (Optional):</label>
-    <input type="file" id="fileUpload" name="fileUpload">
-
-    <!-- Submit button for the form -->
-    <button type="submit">Submit Service</button>
+    <!-- Submit button -->
+    <button type="submit">Submit Service and Tutorial</button>
 </form>
 
 <!-- Placeholder for displaying success or error messages -->

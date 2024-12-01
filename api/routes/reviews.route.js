@@ -12,7 +12,7 @@ const router = express.Router();
  * Endpoint: /api/reviews
  * Description: Allows seekers to leave a review for a service they’ve booked.
  */
-router.post("/", verifyToken, async (req, res) => {
+router.post("/", async (req, res) => {
     try {
         const { serviceId, rating, comment } = req.body;
 
@@ -96,7 +96,7 @@ router.get("/:serviceId", async (req, res) => {
  * Endpoint: /api/reviews/:id
  * Description: Allows seekers to update their review.
  */
-router.put("/:id", verifyToken, async (req, res) => {
+router.put("/:id", async (req, res) => {
     try {
         const { rating, comment } = req.body;
 
@@ -134,7 +134,7 @@ router.put("/:id", verifyToken, async (req, res) => {
  * Endpoint: /api/reviews/:id
  * Description: Allows seekers to delete their review.
  */
-router.delete("/:id", verifyToken, async (req, res) => {
+router.delete("/:id", async (req, res) => {
     try {
         const review = await Review.findOne({ reviewId: req.params.id });
         if (!review) {

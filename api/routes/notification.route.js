@@ -10,7 +10,7 @@ const router = express.Router();
  * Endpoint: /api/notifications
  * Description: Creates a new notification for a user.
  */
-router.post("/", verifyToken, async (req, res) => {
+router.post("/", async (req, res) => {
     try {
         const { userId, type, content } = req.body;
 
@@ -39,7 +39,7 @@ router.post("/", verifyToken, async (req, res) => {
  * Endpoint: /api/notifications
  * Description: Retrieves all notifications for the logged-in user.
  */
-router.get("/", verifyToken, async (req, res) => {
+router.get("/", async (req, res) => {
     try {
         const notifications = await Notification.find({ userId: req.user.userId });
         res.status(200).json({ notifications });
@@ -54,7 +54,7 @@ router.get("/", verifyToken, async (req, res) => {
  * Endpoint: /api/notifications/unread
  * Description: Retrieves unread notifications for the logged-in user.
  */
-router.get("/unread", verifyToken, async (req, res) => {
+router.get("/unread", async (req, res) => {
     try {
         const notifications = await Notification.find({
             userId: req.user.userId,
@@ -72,7 +72,7 @@ router.get("/unread", verifyToken, async (req, res) => {
  * Endpoint: /api/notifications/:id
  * Description: Marks a notification as read.
  */
-router.put("/:id", verifyToken, async (req, res) => {
+router.put("/:id", async (req, res) => {
     try {
         const notification = await Notification.findOne({ notificationId: req.params.id });
         if (!notification) {
@@ -98,7 +98,7 @@ router.put("/:id", verifyToken, async (req, res) => {
  * Endpoint: /api/notifications/:id
  * Description: Deletes a notification.
  */
-router.delete("/:id", verifyToken, async (req, res) => {
+router.delete("/:id", async (req, res) => {
     try {
         const notification = await Notification.findOne({ notificationId: req.params.id });
         if (!notification) {
