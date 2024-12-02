@@ -1,6 +1,6 @@
 Skill Sharing Platform
 
-Developed by Benis Munezero, Taitusi Vadei, Kirill Pankov, Angel O.
+Developed by Benis Munezero, Taitusi Vadei, Kirill Pankov, Angel O., Cobi Williams
 
 Goal
 
