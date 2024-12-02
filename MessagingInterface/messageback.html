@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Skill Share Messaging</title>
+    <script src="https://cdn.socket.io/4.4.1/socket.io.min.js"></script>
+    <style>
+        /* Previous CSS remains the same */
+        .typing-indicator {
+            color: #888;
+            font-style: italic;
+            display: none;
+        }
+        .message-timestamp {
+            font-size: 0.8em;
+            color: #666;
+            margin-top: 5px;
+        }
+        .file-upload {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-messages" id="chat-messages">
+            <!-- Messages will be added here dynamically -->
+        </div>
+        <div class="typing-indicator" id="typing-indicator">
+            Someone is typing...
+        </div>
+        <div class="file-upload">
+            <input type="file" id="file-upload" accept="image/*,application/pdf,.doc,.docx">
+        </div>
+        <div class="message-input-container">
+            <input type="text" id="message-input" placeholder="Type your message...">
+            <button id="send-button">Send</button>
+        </div>
+    </div>
+
+    <script>
+        class AdvancedChatInterface {
+            constructor() {
+                // Connect to WebSocket server
+                this.socket = io('http://localhost:3000');
+                this.currentUser = null;
+                this.recipientUser = null;
+
+                this.messageInput = document.getElementById('message-input');
+                this.sendButton = document.getElementById('send-button');
+                this.chatMessages = document.getElementById('chat-messages');
+                this.typingIndicator = document.getElementById('typing-indicator');
+                this.fileUpload = document.getElementById('file-upload');
+
+                this.setupSocketEvents();
+                this.setupEventListeners();
+            }
+
+            setupSocketEvents() {
+                // User registration
+                this.socket.on('connect', () => {
+                    this.registerUser();
+                });
+
+                // Receive new messages
+                this.socket.on('new-message', (messageData) => {
+                    this.displayMessage(messageData, 'received');
+                });
+
+                // Typing indicator
+                this.socket.on('user-typing', () => {
+                    this.showTypingIndicator();
+                });
+            }
+
+            setupEventListeners() {
+                this.sendButton.addEventListener('click', () => this.sendMessage());
+                this.messageInput.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') {
+                        this.sendMessage();
+                    }
+                    this.sendTypingIndicator();
+                });
+
+                this.fileUpload.addEventListener('change', (e) => {
+                    this.uploadFile(e.target.files[0]);
+                });
+            }
+
+            registerUser() {
+                // In a real app, get actual user details
+                this.currentUser = {
+                    id: 'user123',
+                    username: 'CurrentUser'
+                };
+                this.socket.emit('register', this.currentUser);
+            }
+
+            sendMessage() {
+                const messageText = this.messageInput.value.trim();
+                if (messageText === '' || !this.recipientUser) return;
+
+                const messageData = {
+                    message: messageText,
+                    recipientSocketId: this.recipientUser.socketId,
+                    timestamp: new Date()
+                };
+
+                this.socket.emit('send-message', messageData);
+                this.displayMessage(messageData, 'sent');
+                this.messageInput.value = '';
+            }
+
+            displayMessage(messageData, type) {
+                const messageElement = document.createElement('div');
+                messageElement.classList.add('message', type);
+                
+                const messageText = document.createElement('div');
+                messageText.textContent = messageData.message;
+                messageElement.appendChild(messageText);
+
+                const timestampElement = document.createElement('div');
+                timestampElement.classList.add('message-timestamp');
+                timestampElement.textContent = new Date(messageData.timestamp).toLocaleTimeString();
+                messageElement.appendChild(timestampElement);
+
+                this.chatMessages.appendChild(messageElement);
+                this.scrollToBottom();
+            }
+
+            sendTypingIndicator() {
+                if (this.recipientUser) {
+                    this.socket.emit('typing', this.recipientUser.socketId);
+                }
+            }
+
+            showTypingIndicator() {
+                this.typingIndicator.style.display = 'block';
+                setTimeout(() => {
+                    this.typingIndicator.style.display = 'none';
+                }, 2000);
+            }
+
+            uploadFile(file) {
+                if (!file) return;
+
+                const reader = new FileReader();
+                reader.onload = (event) => {
+                    const fileData = {
+                        filename: file.name,
+                        type: file.type,
+                        data: event.target.result
+                    };
+
+                    // Emit file upload event
+                    this.socket.emit('file-upload', fileData);
+                };
+                reader.readAsDataURL(file);
+            }
+
+            scrollToBottom() {
+                this.chatMessages.scrollTop = this.chatMessages.scrollHeight;
+            }
+        }
+
+        // Initialize the advanced chat interface
+        const chat = new AdvancedChatInterface();
+    </script>
+</body>
+</html>

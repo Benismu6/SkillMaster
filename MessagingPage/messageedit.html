@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Skill Share Messaging</title>
+    <script src="https://cdn.socket.io/4.4.1/socket.io.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+
+        .sidebar {
+            width: 300px;
+            background-color: #ffffff;
+            border-right: 1px solid #e0e0e0;
+            overflow-y: auto;
+        }
+
+        .sidebar-header {
+            padding: 15px;
+            background-color: #007bff;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .user-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .user-list-item {
+            padding: 15px;
+            border-bottom: 1px solid #e0e0e0;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+        }
+
+        .user-list-item:hover {
+            background-color: #f1f1f1;
+        }
+
+        .user-list-item.active {
+            background-color: #e6e6e6;
+        }
+
+        .user-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 15px;
+            background-color: #007bff;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .main-chat {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            background-color: #ffffff;
+        }
+
+        .chat-header {
+            padding: 15px;
+            background-color: #f1f1f1;
+            display: flex;
+            align-items: center;
+        }
+
+        .chat-messages {
+            flex-grow: 1;
+            overflow-y: auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+
+        .message {
+            max-width: 70%;
+            margin-bottom: 15px;
+            padding: 10px;
+            border-radius: 10px;
+            clear: both;
+        }
+
+        .message.sent {
+            background-color: #007bff;
+            color: white;
+            float: right;
+            clear: both;
+        }
+
+        .message.received {
+            background-color: #e9ecef;
+            color: black;
+            float: left;
+            clear: both;
+        }
+
+        .message-status {
+            font-size: 0.7em;
+            color: #666;
+            margin-top: 5px;
+            text-align: right;
+        }
+
+        .message-input-container {
+            display: flex;
+            padding: 15px;
+            background-color: #f1f1f1;
+        }
+
+        #message-input {
+            flex-grow: 1;
+            padding: 10px;
+            margin-right: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        #file-upload {
+            display: none;
+        }
+
+        .attachment-preview {
+            max-width: 200px;
+            max-height: 200px;
+            margin: 10px 0;
+        }
+
+        .file-upload-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h3>Messages</h3>
+            <button id="new-message-btn">+ New</button>
+        </div>
+        <ul class="user-list" id="user-list">
+            <!-- Users will be dynamically added here -->
+        </ul>
+    </div>
+
+    <div class="main-chat">
+        <div class="chat-header" id="chat-header">
+            <div>Select a conversation</div>
+        </div>
+        <div class="chat-messages" id="chat-messages">
+            <!-- Messages will be dynamically added here -->
+        </div>
+        <div class="message-input-container">
+            <input type="text" id="message-input" placeholder="Type a message...">
+            <button id="file-upload-btn" class="file-upload-btn">📎</button>
+            <input type="file" id="file-upload" accept="image/*,application/pdf,.doc,.docx">
+            <button id="send-button">Send</button>
+        </div>
+    </div>
+
+    <script>
+        class AdvancedMessagingSystem {
+            constructor() {
+                // Socket connection (replace with your actual WebSocket server URL)
+                this.socket = io('http://localhost:3000');
+
+                // DOM Elements
+                this.userList = document.getElementById('user-list');
+                this.chatMessages = document.getElementById('chat-messages');
+                this.chatHeader = document.getElementById('chat-header');
+                this.messageInput = document.getElementById('message-input');
+                this.sendButton = document.getElementById('send-button');
+                this.fileUploadBtn = document.getElementById('file-upload-btn');
+                this.fileUpload = document.getElementById('file-upload');
+                this.newMessageBtn = document.getElementById('new-message-btn');
+
+                // Current state
+                this.currentUser = null;
+                this.selectedConversation = null;
+                this.conversations = {};
+
+                this.setupEventListeners();
+                this.initializeSocket();
+            }
+
+            setupEventListeners() {
+                this.sendButton.addEventListener('click', () => this.sendMessage());
+                this.messageInput.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') this.sendMessage();
+                });
+
+                this.fileUploadBtn.addEventListener('click', () => this.fileUpload.click());
+                this.fileUpload.addEventListener('change', (e) => this.handleFileUpload(e.target.files[0]));
+
+                this.newMessageBtn.addEventListener('click', () => this.showUserSearchModal());
+            }
+
+            initializeSocket() {
+                this.socket.on('connect', () => {
+                    this.registerCurrentUser();
+                });
+
+                this.socket.on('user-list', (users) => {
+                    this.updateUserList(users);
+                });
+
+                this.socket.on('new-message', (messageData) => {
+                    this.receiveMessage(messageData);
+                });
+
+                this.socket.on('message-status', (statusData) => {
+                    this.updateMessageStatus(statusData);
+                });
+            }
+
+            registerCurrentUser() {
+                // In a real app, this would come from authentication
+                this.currentUser = {
+                    id: 'user123',
+                    username: 'CurrentUser'
+                };
+                this.socket.emit('register-user', this.currentUser);
+            }
+
+            updateUserList(users) {
+                this.userList.innerHTML = '';
+                users.forEach(user => {
+                    if (user.id !== this.currentUser.id) {
+                        const listItem = document.createElement('li');
+                        listItem.classList.add('user-list-item');
+                        listItem.innerHTML = `
+                            <div class="user-avatar">${user.username[0].toUpperCase()}</div>
+                            <div>
+                                <strong>${user.username}</strong>
+                                <div class="last-message">No recent messages</div>
+                            </div>
+                        `;
+                        listItem.addEventListener('click', () => this.selectConversation(user));
+                        this.userList.appendChild(listItem);
+                    }
+                });
+            }
+
+            selectConversation(user) {
+                // Highlight selected user
+                document.querySelectorAll('.user-list-item').forEach(item => 
+                    item.classList.remove('active'));
+                
+                const selectedItem = Array.from(this.userList.children).find(
+                    item => item.textContent.includes(user.username)
+                );
+                selectedItem.classList.add('active');
+
+                // Update chat header
+                this.chatHeader.innerHTML = `
+                    <div class="user-avatar">${user.username[0].toUpperCase()}</div>
+                    <div>${user.username}</div>
+                `;
+
+                // Load conversation history or initialize
+                this.selectedConversation = user;
+                this.loadConversationHistory(user);
+            }
+
+            loadConversationHistory(user) {
+                this.chatMessages.innerHTML = '';
+                // In a real app, fetch message history from backend
+                const history = this.conversations[user.id] || [];
+                history.forEach(msg => this.displayMessage(msg));
+            }
+
+            sendMessage() {
+                const messageText = this.messageInput.value.trim();
+                if (!messageText || !this.selectedConversation) return;
+
+                const messageData = {
+                    sender: this.currentUser,
+                    recipient: this.selectedConversation,
+                    text: messageText,
+                    timestamp: new Date(),
+                    status: 'sent'
+                };
+
+                this.socket.emit('send-message', messageData);
+                this.displayMessage(messageData);
+                this.messageInput.value = '';
+            }
+
+            handleFileUpload(file) {
+                if (!file || !this.selectedConversation) return;
+
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    const fileData = {
+                        sender: this.currentUser,
+                        recipient: this.selectedConversation,
+                        file: {
+                            name: file.name,
+                            type: file.type,
+                            data: e.target.result
+                        },
+                        timestamp: new Date(),
+                        status: 'sent'
+                    };
+
+                    this.socket.emit('send-file', fileData);
+                    this.displayMessage(fileData);
+                };
+                reader.readAsDataURL(file);
+            }
+
+            receiveMessage(messageData) {
+                // Check if message is for current conversation
+                if (messageData.sender.id === this.selectedConversation?.id) {
+                    this.displayMessage(messageData);
+                }
+
+                // Update user list with last message
+                this.updateLastMessage(messageData);
+            }
+
+            displayMessage(messageData) {
+                const messageElement = document.createElement('div');
+                messageElement.classList.add('message');
+                messageElement.classList.add(
+                    messageData.sender.id === this.currentUser.id ? 'sent' : 'received'
+                );
+
+                // Handle text or file messages
+                if (messageData.text) {
+                    messageElement.textContent = messageData.text;
+                } else if (messageData.file) {
+                    const filePreview = document.createElement('img');
+                    filePreview.src = messageData.file.data;
+                    filePreview.classList.add('attachment-preview');
+                    messageElement.appendChild(filePreview);
+                }
+
+                // Add timestamp and status
+                const statusElement = document.createElement('div');
+                statusElement.classList.add('message-status');
+                statusElement.textContent = `${new Date(messageData.timestamp).toLocaleTimeString()} • ${messageData.status}`;
+                messageElement.appendChild(statusElement);
+
+                this.chatMessages.appendChild(messageElement);
+                this.chatMessages.scrollTop = this.chatMessages.scrollHeight;
+            }
+
+            updateMessageStatus(statusData) {
+                // Update message status (read, delivered)
+                // Implement logic to update message status
+            }
+
+            updateLastMessage(messageData) {
+                // Update last message in user list
+                const userListItem = Array.from(this.userList.children).find(
+                    item => item.textContent.includes(messageData.sender.username)
+                );
+
+                if (userListItem) {
+                    const lastMessageElement = userListItem.querySelector('.last-message');
+                    lastMessageElement.textContent = messageData.text || 'File shared';
+                }
+            }
+
+            showUserSearchModal() {
+                // Implement a modal or search interface to find new users to message
+                alert('Implement user search functionality');
+            }
+        }
+
+        // Initialize the messaging system
+        const messagingSystem = new AdvancedMessagingSystem();
+    </script>
+</body>
+</html>
