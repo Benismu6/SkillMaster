@@ -106,6 +106,10 @@
                 <h2>Credits</h2>
                 <p>Additional information and details were sourced from  <a href="https://nick.blog/wp-content/uploads/2018/04/lockpicking-detail-overkill.pdf" target="_blank">Lockpicking Detail Overkill</a>.</p>
             </section>
+            <script type="module">
+                import { renderStripePaymentBox } from "../StripeApi/stripe.js";
+                renderStripePaymentBox('payment-container', 5000); // Amount in cents, e.g., $50.00
+            </script>
         </div>    
           
         <footer>

@@ -1,0 +1,38 @@
+.stripe-payment-container {
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: #f9f9f9;
+}
+
+.stripe-card-element {
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 4px;
+    background: white;
+    margin-bottom: 20px;
+}
+
+.stripe-submit-button {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    color: white;
+    background-color: #6772e5;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.stripe-submit-button:hover {
+    background-color: #5469d4;
+}
+
+.stripe-payment-message {
+    margin-top: 20px;
+    font-size: 14px;
+    text-align: center;
+}

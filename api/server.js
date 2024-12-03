@@ -10,6 +10,7 @@ import reviewsRoute from "./routes/reviews.route.js"; // Import the Reviews rout
 import messagesRoute from "./routes/messages.route.js"; // Import the Message routes
 import paymentsRoute from "./routes/payments.route.js"; // Import the Payments route
 import notificationRoute from "./routes/notification.route.js"; // Import the Notification route
+import stripeRoutes from "./routes/stripe.route.js"; // Import the Stripe routes
 
 dotenv.config(); // Load environment variables
 const app = express();
@@ -37,7 +38,7 @@ app.use("/api/reviews", reviewsRoute);
 app.use("/api/messages", messagesRoute);
 app.use("/api/payments", paymentsRoute);
 app.use("/api/notifications", notificationRoute);
-
+app.use("/api/stripe", stripeRoutes); // Add the Stripe routes
 
 const startServer = async () => {
     try {
