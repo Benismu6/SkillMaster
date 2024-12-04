@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Popup with Sad Drake</title>
+    <link rel="stylesheet" href="popup.css"> <!-- Path to popup.css -->
+</head>
+<body>
+    <!-- Main Content -->
+    <h1>Test Popup with Sad Drake</h1>
+    <button id="trigger-popup">Trigger Popup</button>
+
+    <!-- Popup -->
+    <div id="popup-container" class="popup-container" style="display: none;">
+        <img id="popup-image" class="popup-image" src="saddrake.gif" alt="Sad Drake">
+        <div id="popup-message" class="popup-message">Something went wrong!</div>
+        <button id="popup-close-button" class="popup-close-button">Close</button>
+    </div>
+
+    <!-- Script -->
+    <script>
+        document.getElementById("trigger-popup").addEventListener("click", () => {
+            const popup = document.getElementById("popup-container");
+            popup.style.display = "block";
+        });
+
+        document.getElementById("popup-close-button").addEventListener("click", () => {
+            const popup = document.getElementById("popup-container");
+            popup.style.display = "none";
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lockpicking Class - Paywalled</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../StripeApi/stripe.css">
+    <link rel="stylesheet" href="../Popup/popup.css"> <!-- Link to Popup CSS -->
+    <script src="https://js.stripe.com/v3/"></script>
+</head>
+<body>
+    <nav class="minimal-nav">
+        <a href="/homepage.html">Home</a>
+        <a href="#">Profile</a>
+        <a href="#">Sign Out</a>
+    </nav>
+
+    <div class="content-wrapper">
+        <header>
+            <h1>Access the Full Lockpicking Tutorial</h1>
+            <p><em>Master the art of lockpicking for legal uses and personal knowledge.</em></p>
+        </header>
+
+        <section class="payment-section">
+            <h2>Purchase Access</h2>
+            <p>Pay $50 to unlock the full tutorial.</p>
+            <div id="payment-container" class="stripe-payment-container">
+                <div id="card-element" class="stripe-card-element"></div>
+                <button id="submit" class="stripe-submit-button">Pay $50</button>
+                <div id="payment-message" class="stripe-payment-message"></div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="footer-section">
+            <p>Copyright © 2024 Skill Share. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script type="module" src="../StripeApi/stripe.js"></script>
+    <script type="module">
+        import { renderStripePaymentBox } from "../StripeApi/stripe.js";
+
+        // Render the payment box and redirect upon success
+        renderStripePaymentBox("payment-container", 5000, "usd", () => {
+            window.location.href = "lockpickingClass.html"; // Redirect on success
+        });
+    </script>
+</body>
+</html>

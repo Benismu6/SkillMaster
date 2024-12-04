@@ -1,30 +1,55 @@
-// Initialize Stripe
-export function createStripePaymentBox(publishableKey, amount, currency, containerId) {
-    const stripe = Stripe(publishableKey);
+import { Popup } from "../popup/popup.js";
+
+export async function renderStripePaymentBox(containerId, amount, currency = "usd", onSuccess) {
+    const popup = new Popup(); // Initialize Popup
+
+    const stripe = Stripe("your-publishable-key"); // Replace with your Stripe Publishable Key
     const elements = stripe.elements();
-
-    // Create a card element
     const cardElement = elements.create("card");
-    cardElement.mount(`#${containerId}`);
+    cardElement.mount(`#${containerId} #card-element`);
 
-    // Add event listener for the payment button
-    document.getElementById("submit-payment").addEventListener("click", async () => {
-        const response = await fetch("/api/stripe/create-payment-intent", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ amount, currency }),
-        });
+    document.querySelector(`#${containerId} #submit`).addEventListener("click", async () => {
+        try {
+            // Check if user inputs "2" for testing success
+            const cardInputs = document.querySelectorAll(`#${containerId} iframe`);
+            const isTestSuccess = [...cardInputs].every(input => input.value === "2");
 
-        const { clientSecret } = await response.json();
+            if (isTestSuccess) {
+                alert("Test mode: Payment successful! Redirecting...");
+                if (typeof onSuccess === "function") {
+                    onSuccess(); // Trigger the redirection or success callback
+                }
+                return;
+            }
 
-        const { error } = await stripe.confirmCardPayment(clientSecret, {
-            payment_method: { card: cardElement },
-        });
+            // Call backend to create a payment intent
+            const response = await fetch("http://localhost:3000/api/stripe/create-payment-intent", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ amount, currency }),
+            });
 
-        if (error) {
-            document.getElementById("payment-message").textContent = error.message;
-        } else {
-            document.getElementById("payment-message").textContent = "Payment successful!";
+            if (!response.ok) {
+                throw new Error("Failed to create payment intent. Please try again.");
+            }
+
+            const { clientSecret } = await response.json();
+
+            // Confirm the payment
+            const { error, paymentIntent } = await stripe.confirmCardPayment(clientSecret, {
+                payment_method: { card: cardElement },
+            });
+
+            if (error) {
+                popup.showPopup(`Payment failed: ${error.message}`); // Use popup for Stripe errors
+            } else {
+                alert("Payment successful! Redirecting...");
+                if (typeof onSuccess === "function") {
+                    onSuccess(); // Trigger the redirection or success callback
+                }
+            }
+        } catch (err) {
+            popup.showPopup(`An unexpected error occurred: ${err.message}`); // Use popup for unexpected errors
         }
     });
 }

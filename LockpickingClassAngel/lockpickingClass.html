@@ -9,6 +9,7 @@
     </head>
 
     <body>
+        
         <nav class="minimal-nav">
             <a href="/homepage.html">Home</a>
             <a href="#">Profile</a>
@@ -106,10 +107,7 @@
                 <h2>Credits</h2>
                 <p>Additional information and details were sourced from  <a href="https://nick.blog/wp-content/uploads/2018/04/lockpicking-detail-overkill.pdf" target="_blank">Lockpicking Detail Overkill</a>.</p>
             </section>
-            <script type="module">
-                import { renderStripePaymentBox } from "../StripeApi/stripe.js";
-                renderStripePaymentBox('payment-container', 5000); // Amount in cents, e.g., $50.00
-            </script>
+            
         </div>    
           
         <footer>
@@ -140,9 +138,16 @@
                 <button type="submit">Subscribe</button>
             </div>
             <div class="footer-copyright">
-                <h5>Copyright © 2024 Skill Share. All rights reserved.</h5>
+                <h5>Copyright © 2024 Skill Master. All rights reserved.</h5>
             </div>
         </div>
+        <script type="module" src="../StripeApi/stripe.js"></script> <!-- Stripe Payment Script -->
+        <script type="module">
+            import { renderStripePaymentBox } from "../StripeApi/stripe.js";
+    
+            // Render the payment box for $50 (5000 cents)
+            renderStripePaymentBox("payment-container", 5000, "usd");
+        </script>
     </footer>
         
         <script src="script.js"></script>
