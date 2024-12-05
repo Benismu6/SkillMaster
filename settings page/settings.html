@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Settings</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="settings-container">
+        <h1>User Profile Settings</h1>
+        <form id="profileForm">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" placeholder="Enter your name">
+            
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email">
+            
+            <label for="bio">Bio:</label>
+            <textarea id="bio" name="bio" placeholder="Enter your bio"></textarea>
+            
+            <label for="profilePicture">Profile Picture URL:</label>
+            <input type="text" id="profilePicture" name="profilePicture" placeholder="Enter profile picture URL">
+            
+            <button type="submit">Save Changes</button>
+        </form>
+
+        <div id="profileDetails">
+            <h3>Profile Information</h3>
+            <p><strong>Name:</strong> <span id="profileName"></span></p>
+            <p><strong>Email:</strong> <span id="profileEmail"></span></p>
+            <p><strong>Bio:</strong> <span id="profileBio"></span></p>
+            <p><strong>Profile Picture:</strong> <img id="profileImage" src="" alt="Profile Picture" width="100"></p>
+        </div>
+    </div>
+
+    <script src="settings.js"></script>
+</body>
+</html>
