@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service Detail - SkillMaster</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="homepage.html">SkillMaster</a>
+            <a href="available_services.html">Available Services</a>
+        </nav>
+    </header>
+
+    <main>
+        <div id="serviceDetails">
+            <!-- Service details will be dynamically loaded here -->
+        </div>
+    </main>
+
+    <script>
+        // Function to fetch and display service details
+        async function fetchServiceDetails() {
+            // Get service ID from URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const serviceId = urlParams.get('id');
+
+            if (!serviceId) {
+                document.getElementById('serviceDetails').innerHTML = '<p>No service selected.</p>';
+                return;
+            }
+
+            try {
+                // Fetch service details
+                const response = await axios.get(`http://localhost:3000/api/services/${serviceId}`);
+                const service = response.data.service;
+
+                // Display service details
+                document.getElementById('serviceDetails').innerHTML = `
+                    <h1>${service.title}</h1>
+                    <p><strong>Category:</strong> ${service.category}</p>
+                    <p><strong>Description:</strong> ${service.description}</p>
+                    <p><strong>Price:</strong> $${service.price}</p>
+                    <p><strong>Experience Level:</strong> ${service.experience}</p>
+                    <p><strong>Contact:</strong> ${service.contact}</p>
+                    <p><strong>Additional Details:</strong> ${service.additionalDetails || 'No additional details available'}</p>
+                `;
+            } catch (error) {
+                console.error('Error fetching service details:', error);
+                document.getElementById('serviceDetails').innerHTML = '<p>Error loading service details. Please try again later.</p>';
+            }
+        }
+
+        // Fetch service details when page loads
+        document.addEventListener('DOMContentLoaded', fetchServiceDetails);
+    </script>
+</body>
+</html>
