@@ -40,8 +40,10 @@ a:hover {
 .about-section {
   background-color: #FFFFFF;
   text-align: left;
-  padding: 60px 20px;
+  padding: 40px 60px;
   color: #333;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
 .about-section h1, .about-section h2 {
