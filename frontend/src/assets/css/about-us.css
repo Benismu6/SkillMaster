@@ -1,0 +1,78 @@
+/* General Styles */
+body {
+  background-color: #F9F9F9;
+  color: #333333;
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2, h3 {
+  color: #4CAF50;
+}
+
+a {
+  color: #4CAF50;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #FF7043;
+}
+
+/* About Section */
+.about-section {
+  background-color: #FFFFFF;
+  text-align: left;
+  padding: 60px 20px;
+  color: #333;
+}
+
+.about-section h1, .about-section h2 {
+  margin-bottom: 20px;
+}
+
+.about-section p {
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+.about-section ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.about-section ul li {
+  margin-bottom: 10px;
+  line-height: 1.6;
+}
+
+/* Team Section */
+.team-section {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin: 20px 0;
+}
+
+.team-member {
+  text-align: center;
+  margin: 20px;
+}
+
+.team-member img {
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+  margin-bottom: 10px;
+}
+
+.team-member h3 {
+  margin: 10px 0 5px;
+  color: #333;
+}
+
+.team-member p {
+  font-size: 14px;
+  color: #666;
+}
