@@ -1,89 +1,58 @@
-/* Navigation Bar Styles */
+/* Minimal Navigation Bar */
+.minimal-nav {
+  background-color: rgba(44, 62, 80, 0.9); /* Semi-transparent background */
+  padding: 10px 15px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  transition: all 0.3s ease-in-out;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
-/* General Nav Bar Styles */
-nav {
-    background-color: #2C3E50;
-    padding: 20px 20px;
-    border-bottom: 1px solid #EEEEEE;
-  }
-  
-  .navdiv {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  
-  .logo a {
-    font-size: 35px;
-    font-weight: 600;
-    color: #FFFFFF;
-    text-decoration: none;
-  }
-  
-  /* Full Homepage Nav */
-  nav ul {
-    list-style: none;
-    display: flex;
-    gap: 25px;
-    margin: 0;
-    padding: 0;
-    align-items: center;
-  }
-  
-  nav ul li {
-    display: inline;
-  }
-  
-  nav ul a {
-    color: #FFFFFF;
-    font-size: 18px;
-    font-weight: bold;
-    text-decoration: none;
-  }
-  
-  nav ul a:hover {
-    color: #FF7043;
-  }
-  
-  /* Minimal Nav Bar */
-  .minimal-nav {
-    display: flex;
-    justify-content: space-between;
-    background-color: #2C3E50;
-    padding: 15px 20px;
-  }
-  
-  .minimal-nav a {
-    color: #FFFFFF;
-    font-size: 18px;
-    font-weight: bold;
-    text-decoration: none;
-    margin-right: 20px;
-  }
-  
-  .minimal-nav a:hover {
-    color: #FF7043;
-  }
-  
-  /* Buttons */
-  .button {
-    background-color: #4CAF50;
-    color: #FFFFFF;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    margin-left: 10px;
-  }
-  
-  .button a {
-    color: #FFFFFF;
-    text-decoration: none;
-  }
-  
-  .button:hover {
-    background-color: #FF7043;
-  }
-  
+.minimal-nav .logo a {
+  font-size: 20px;
+  font-weight: bold;
+  color: #FFFFFF;
+  text-decoration: none;
+  transition: color 0.3s ease-in-out;
+}
+
+.minimal-nav .nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.minimal-nav .nav-link {
+  font-size: 16px;
+  font-weight: bold;
+  color: #FFFFFF;
+  text-decoration: none;
+  transition: color 0.3s ease-in-out;
+}
+
+.minimal-nav .nav-link:hover {
+  color: #FF7043;
+}
+
+.minimal-nav .button {
+  background-color: #4CAF50;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 16px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.minimal-nav .button:hover {
+  background-color: #FF7043;
+}
+
+.minimal-nav .button a {
+  color: #FFFFFF;
+  text-decoration: none;
+}

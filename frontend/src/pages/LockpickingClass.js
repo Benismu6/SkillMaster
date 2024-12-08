@@ -20,7 +20,7 @@ const LockpickingClass = () => {
 
         <section className="content">
           <p>
-            In this tutorial, we’ll cover the basics of lockpicking and introduce you to the tools and techniques
+            In this tutorial, we'll cover the basics of lockpicking and introduce you to the tools and techniques
             needed to understand simple locks. Note: Always use these skills responsibly and legally.
           </p>
 
@@ -34,14 +34,14 @@ const LockpickingClass = () => {
             <h3>Step 1: Understand the Basics of Locks</h3>
             <p>
               Locks have a series of pins that must be aligned to unlock. When the correct key is inserted, all pins
-              align, allowing the lock to turn. Here’s an example:
+              align, allowing the lock to turn. Here's an example:
             </p>
             <div className="image-container">
               <img src="/assets/images/correctkey.png" alt="Correct Key Aligns Pins" />
               <div className="image-credit">Credit: Author Name</div>
             </div>
             <p>
-              If an incorrect key is used, the pins won’t align, and the lock will stay closed:
+              If an incorrect key is used, the pins won't align, and the lock will stay closed:
             </p>
             <div className="image-container">
               <img src="/assets/images/incorrectkey.png" alt="Incorrect Key Does Not Align Pins" />
@@ -53,7 +53,7 @@ const LockpickingClass = () => {
             <h3>Step 2: Insert the Tension Wrench</h3>
             <p>
               Insert the tension wrench into the bottom of the lock. Apply gentle pressure to simulate the turning
-              force needed to open the lock. Here’s an example of the top and bottom sections of the lock:
+              force needed to open the lock. Here's an example of the top and bottom sections of the lock:
             </p>
             <div className="image-container">
               <img src="/assets/images/topbottom.png" alt="Top and Bottom Sections of the Lock" />

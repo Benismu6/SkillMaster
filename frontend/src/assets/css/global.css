@@ -7,6 +7,7 @@ body {
   font-family: 'Arial', sans-serif;
   margin: 0;
   padding: 0;
+  overflow-x: hidden; /* Prevent horizontal scrolling issues */
 }
 
 h1, h2, h3 {
@@ -20,6 +21,25 @@ a {
 
 a:hover {
   color: #FF7043;
+}
+
+/* ===============================
+   Buttons
+================================ */
+.button {
+  background-color: #4CAF50;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.button:hover {
+  background-color: #FF7043;
+  transform: scale(1.05);
 }
 
 /* ===============================
@@ -58,187 +78,13 @@ nav ul a:hover {
   color: #FF7043;
 }
 
-.button {
-  background-color: #4CAF50;
-  color: #FFFFFF;
-  border: none;
-  border-radius: 5px;
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  margin-left: 10px;
-}
-
-.button:hover {
-  background-color: #FF7043;
-}
-
-/* ===============================
-   Hero Section
-================================ */
-.hero {
-  background-color: #FFFFFF;
-  text-align: center;
-  padding: 50px 20px;
-}
-
-.hero h1 {
-  font-size: 3rem;
-  margin-bottom: 10px;
-}
-
-.subheading {
-  font-size: 1.5rem;
-  margin-bottom: 20px;
-}
-
-.hero-cta {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  margin-bottom: 30px;
-}
-
-.search-bar {
-  padding: 10px 15px;
-  border-radius: 5px;
-  border: 1px solid #CCCCCC;
-  width: 250px;
-}
-
-.hero-features {
-  display: flex;
-  justify-content: space-around;
-  margin-top: 20px;
-}
-
-.feature i {
-  font-size: 2rem;
-  color: #4CAF50;
-  margin-bottom: 5px;
-}
-
-.scroll-hint i {
-  font-size: 2rem;
-  color: #4CAF50;
-  animation: bounce 2s infinite;
-}
-
-/* ===============================
-   Image Scroll Section
-================================ */
-.image-scroll-section {
-  background-color: #EAF8E6;
-  padding: 60px 0;
-}
-
-.image-scroll-wrapper {
-  display: flex;
-  animation: scroll 20s linear infinite;
-}
-
-.image-scroll-wrapper img {
-  width: 500px;
-  margin: 0 10px;
-  border-radius: 5px;
-  object-fit: cover;
-}
-
-@keyframes scroll {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-100%);
-  }
-}
-
-/* ===============================
-   How It Works Section
-================================ */
-#how-it-works-section {
-  background-color: #FFFFFF;
-  text-align: center;
-  padding: 60px 20px;
-}
-
-.steps-container {
-  display: flex;
-  justify-content: center;
-  gap: 40px;
-  flex-wrap: wrap;
-}
-
-.step {
-  max-width: 250px;
-  padding: 20px;
-  background-color: #FFFFFF;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s;
-}
-
-.step:hover {
-  transform: translateY(-10px);
-}
-
-/* ===============================
-   CTA Section
-================================ */
-.cta-seeker-provider {
-  text-align: center;
-  background-color: #FFFFFF;
-  padding: 50px 20px;
-}
-
-.seeker-button, .provider-button {
-  background-color: #4CAF50;
-  color: #FFFFFF;
-  padding: 15px 30px;
-  border-radius: 5px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.seeker-button:hover, .provider-button:hover {
-  background-color: #FF7043;
-  transform: scale(1.05);
-}
-
-/* ===============================
-   Skills Section
-================================ */
-#skills-section {
-  background-color: #EAF8E6;
-  text-align: center;
-  padding: 60px 20px;
-}
-
-.skill-card {
-  background-color: #4CAF50;
-  color: #FFFFFF;
-  padding: 15px 30px;
-  border-radius: 8px;
-  font-size: 16px;
-  cursor: pointer;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s, background-color 0.3s;
-}
-
-.skill-card:hover {
-  background-color: #FF7043;
-  transform: scale(1.05);
-}
-
 /* ===============================
    Footer
 ================================ */
 footer {
   background-color: #2C3E50;
   color: #FFFFFF;
-  padding: 20px 20px;
+  padding: 20px;
   text-align: center;
 }
 
