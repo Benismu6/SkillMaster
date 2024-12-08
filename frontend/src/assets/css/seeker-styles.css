@@ -1,0 +1,98 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+/* Profile Wrapper */
+.profile-wrapper {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #FFFFFF;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.profile-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.profile-picture {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    margin-bottom: 15px;
+}
+
+.user-name {
+    font-size: 28px;
+    color: #4CAF50;
+}
+
+.member-since {
+    font-size: 16px;
+    color: #777;
+}
+
+/* Profile Stats */
+.profile-stats {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 30px;
+}
+
+.stat h3 {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.stat p {
+    font-size: 24px;
+    color: #4CAF50;
+    font-weight: bold;
+}
+
+/* Accomplishments Section */
+.accomplishments-section {
+    margin-top: 20px;
+    text-align: left;
+}
+
+.accomplishments-section h3 {
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+
+.accomplishments-section ul {
+    list-style-type: disc;
+    padding-left: 20px;
+}
+
+.accomplishments-section li {
+    margin-bottom: 10px;
+}
+
+/* Footer */
+footer {
+    background-color: #2C3E50;
+    color: #FFFFFF;
+    padding: 20px 20px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.footer-links a {
+    color: #4CAF50;
+    text-decoration: none;
+}
+
+.footer-links a:hover {
+    color: #FF7043;
+}
