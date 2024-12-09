@@ -1,0 +1,95 @@
+/* General Styles */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+  color: #333;
+}
+
+/* Profile Wrapper */
+.provider-profile-wrapper {
+  max-width: 900px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #FFFFFF;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.provider-profile-wrapper h2 {
+  font-size: 32px;
+  color: #4CAF50;
+  margin-bottom: 20px;
+}
+
+.profile-overview {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.profile-photo {
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  margin-right: 20px;
+}
+
+.profile-details {
+  text-align: left;
+}
+
+.profile-details h3 {
+  margin: 0;
+  color: #333;
+}
+
+.credentials-section, 
+.classes-section, 
+.stats-section {
+  margin-bottom: 40px;
+  text-align: left;
+}
+
+.credentials-section h3, 
+.classes-section h3, 
+.stats-section h3 {
+  color: #4CAF50;
+}
+
+.add-class-btn, 
+.manage-btn {
+  background-color: #4CAF50;
+  color: #FFFFFF;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.3s;
+}
+
+.add-class-btn:hover, 
+.manage-btn:hover {
+  background-color: #FF7043;
+}
+
+.class-list {
+  margin-top: 20px;
+}
+
+.class-item {
+  background-color: #f9f9f9;
+  padding: 15px;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.stats-section p {
+  margin: 5px 0;
+}
