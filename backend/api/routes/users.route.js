@@ -15,14 +15,31 @@ const router = express.Router(); // Create an Express router instance
 router.post("/signup", async (req, res) => {
     try {
         // Extract user details from the request body
-        const { userId, name, email, password, role, profilePicture, bio } = req.body;
+        const {
+            userId,
+            name,
+            email,
+            password,
+            role,
+            profilePicture = "",
+            bio = "",
+            credentials = [],
+            specialties = [],
+            contactDetails = { phone: "", address: "" },
+        } = req.body;
 
         // Validate required fields
         if (!userId || !name || !email || !password || !role) {
             return res.status(400).json({ message: "All required fields must be provided." });
         }
 
-        // Check if a user with the same email or username already exists
+        // Validate role
+        const validRoles = ["provider", "seeker"];
+        if (!validRoles.includes(role.toLowerCase())) {
+            return res.status(400).json({ message: "Invalid role provided." });
+        }
+
+        // Check for duplicate email or userId
         const existingUser = await User.findOne({ $or: [{ email }, { userId }] });
         if (existingUser) {
             return res.status(400).json({ message: "User with this email or username already exists." });
@@ -34,9 +51,11 @@ router.post("/signup", async (req, res) => {
             name,
             email,
             password, // Password will be hashed automatically by the pre-save middleware in the schema
-            role,
-            profilePicture: profilePicture || "", // Optional field
-            bio: bio || "", // Optional field
+            role: [role.toLowerCase()], // Store role as an array
+            profilePicture,
+            bio,
+            contactDetails,
+            ...(role.toLowerCase() === "provider" && { credentials, specialties }), // Add provider-specific fields
         });
 
         // Save the new user to the database
@@ -68,13 +87,18 @@ router.post("/login", async (req, res) => {
         // Find the user by email
         const user = await User.findOne({ email });
         if (!user) {
-            return res.status(404).json({ message: "User not found." });
+            return res.status(400).json({ message: "Invalid email or password." });
         }
 
         // Compare the provided password with the stored hashed password
         const isPasswordValid = await bcrypt.compare(password, user.password);
         if (!isPasswordValid) {
             return res.status(400).json({ message: "Invalid email or password." });
+        }
+
+        // Ensure JWT secret is defined
+        if (!process.env.JWT_SECRET) {
+            return res.status(500).json({ message: "Server configuration error. Please try again later." });
         }
 
         // Generate a JWT token for authentication
