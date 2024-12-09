@@ -24,6 +24,14 @@
         <a href="/homepage.html" class="logo">SkillMaster</a>
         <a href="/homepage.html">Home</a>
     </nav>
+    
+    <div id="successModal" class="modal" style="display: none;">
+      <div class="modal-content">
+        <span class="close-button" onclick="closeSuccessMessage()">&times;</span>
+        <p id="modalMessage">Success Message Here</p>
+        <button onclick="closeSuccessMessage()">Close</button>
+      </div>
+    </div>
 
     <h2>Sign Up</h2>
     <select id="role" onchange="toggleFields()">
